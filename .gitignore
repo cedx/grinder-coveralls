@@ -1,0 +1,9 @@
+/.idea/
+/.pub/
+/doc/api/
+/var/
+
+/*.iml
+/**/.DS_Store
+/.packages
+/pubspec.lock
