@@ -1,5 +1,5 @@
 name: grinder_coveralls
-version: 1.0.0
+version: 0.1.0
 
 author: Cédric Belin <cedric@belin.io>
 description: Coveralls plug-in for the Grinder build system.

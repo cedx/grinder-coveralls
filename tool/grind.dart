@@ -37,5 +37,11 @@ Future test() async {
     Pub.runAsync('coverage', script: 'collect_coverage', arguments: const ['--out=var/coverage.json', '--resume-isolates'])
   ]);
 
-  await Pub.runAsync('coverage', script: 'format_coverage', arguments: const ['--in=var/coverage.json', '--lcov', '--out=var/coverage.lcov']);
+  await Pub.runAsync('coverage', script: 'format_coverage', arguments: const [
+    '--in=var/coverage.json',
+    '--lcov',
+    '--packages=.packages',
+    '--out=var/coverage.lcov',
+    '--report-on=lib'
+  ]);
 }
