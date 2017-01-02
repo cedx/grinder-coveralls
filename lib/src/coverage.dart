@@ -1,29 +1,34 @@
 part of grinder_coveralls;
 
-/// Collects the code coverage in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
+/// Collects the code coverage of a Dart script in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
 class Coverage {
 
-  /// TODO
-  Coverage(this.scriptPath, {this.scriptArgs});
+  /// Creates a new coverage collector.
+  Coverage({this.basePath, this.packagesPath = '.packages', this.reportOn = const ['lib/']});
 
-  /// TODO
-  List<String> scriptArgs;
+  /// If provided, paths are reported relative to that path.
+  String basePath;
 
-  /// TODO
-  String scriptPath;
+  /// The path to the packages specification file.
+  String packagesPath;
+
+  /// If provided, coverage report output is limited to files prefixed with one of the paths included.
+  List<String> reportOn;
 
   /// Runs the specified [script] and returns its code coverage in LCOV format.
-  /// The [arguments] list provides the optional script arguments.
-  String collect() {
+  String collect(String script, {List<String> arguments, Duration timeout}) {
     var lcov;
-    new Future<String>.sync(() => collectAsync()).then((coverage) => lcov = coverage);
+    new Future<String>.sync(() => collectAsync(script, arguments: arguments, timeout: timeout))
+      .then((coverage) => lcov = coverage)
+      .catchError((error) => lcov = ''); // TODO rethrow ?
+
     return lcov;
   }
 
-  /// Runs asynchronously the specified [script] and returns its code coverage in LCOV format.
-  /// The [arguments] list provides the optional script arguments.
-  Future<String> collectAsync() async {
-    var coverage = await runAndCollect(this.scriptPath, scriptArgs: this.scriptArgs);
-    return await new LcovFormatter(new Resolver()).format(coverage);
+  /// Runs the specified [script] asynchronously and returns its code coverage in LCOV format.
+  Future<String> collectAsync(String script, {List<String> arguments, Duration timeout}) async {
+    var coverage = await runAndCollect(script, scriptArgs: arguments);
+    var resolver = new Resolver(packagesPath: packagesPath, sdkRoot: sdkDir.path);
+    return await new LcovFormatter(resolver, basePath: basePath, reportOn: reportOn).format(coverage);
   }
 }
