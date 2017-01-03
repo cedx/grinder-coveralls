@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:grinder/grinder.dart';
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
 /// The list of source directories.
 const List<String> _sources = const ['lib', 'test', 'tool'];
@@ -31,17 +32,4 @@ void lint() => Analyzer.analyze(_sources);
 
 /// Runs the unit tests.
 @Task()
-Future test() async {
-  await Future.wait([
-    Dart.runAsync('test/all.dart', vmArgs: const ['--checked', '--enable-vm-service', '--pause-isolates-on-exit']),
-    Pub.runAsync('coverage', script: 'collect_coverage', arguments: const ['--out=var/coverage.json', '--resume-isolates'])
-  ]);
-
-  await Pub.runAsync('coverage', script: 'format_coverage', arguments: const [
-    '--in=var/coverage.json',
-    '--lcov',
-    '--packages=.packages',
-    '--out=var/coverage.lcov',
-    '--report-on=lib'
-  ]);
-}
+void test() => collectCoverage('test/all.dart', output: 'var/coverage.lcov');
