@@ -2,21 +2,14 @@ import 'dart:async';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-/// The list of source directories.
-const List<String> _sources = const ['lib', 'test', 'tool'];
-
 /// Starts the build system.
 Future main(List<String> args) => grind(args);
 
-/// Uploads the code coverage to the [Coveralls](https://coveralls.io) service.
+/// Uploads the code coverage report.
 @Task()
 @Depends(test)
-void coverage() {
-  // TODO
-}
+void coverage() => uploadCoverage('var/lcov.info');
 
-/// Collects the code coverage in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
+/// Runs all the test suites.
 @Task()
-void test() {
-  // TODO
-}
+void test() => collectCoverage('test/all.dart', 'var/lcov.info');

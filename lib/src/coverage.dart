@@ -1,6 +1,6 @@
 part of grinder_coveralls;
 
-/// Collects the code coverage of a Dart script in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
+/// Collects the coverage data of a Dart script as [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
 class Coverage {
 
   /// Creates a new coverage collector.
@@ -15,7 +15,7 @@ class Coverage {
   /// If provided, coverage report output is limited to files prefixed with one of the paths included.
   List<String> reportOn;
 
-  /// Runs the specified [script] and returns its code coverage as LCOV format.
+  /// Runs the specified [script] and returns its coverage data as LCOV format.
   String collect(File script, {List<String> arguments, Duration timeout}) {
     var output;
     new Future<String>
@@ -25,7 +25,7 @@ class Coverage {
     return output;
   }
 
-  /// Runs asynchronously the specified [script] and returns its code coverage as LCOV format.
+  /// Runs asynchronously the specified [script] and returns its coverage data as LCOV format.
   Future<String> collectAsync(File script, {List<String> arguments, Duration timeout}) async {
     assert(script != null);
     if (!await script.exists())
