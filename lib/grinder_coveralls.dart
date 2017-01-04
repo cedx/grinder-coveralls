@@ -33,4 +33,15 @@ Future<String> collectCoverageAsync(dynamic script, {List<String> arguments, Str
   if (output != null) await getFile(output).writeAsString(coverage);
   return coverage;
 }
+
+/// Uploads the specified code [coverage] report in LCOV format to the Coveralls service.
+void uploadCoverage(dynamic coverage) {
+  var path = coverage is FilePath ? coverage : new FilePath(coverage);
+  new CoverallsClient().uploadFile(path.asFile);
+}
+
+/// Uploads asynchronously the specified code [coverage] report in LCOV format to the Coveralls service.
+Future uploadCoverageAsync(dynamic coverage) async {
+  var path = coverage is FilePath ? coverage : new FilePath(coverage);
+  await new CoverallsClient().uploadFileAsync(path.asFile);
 }
