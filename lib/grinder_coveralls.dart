@@ -12,7 +12,23 @@ part 'src/coverage.dart';
 part 'src/coveralls_client.dart';
 part 'src/coveralls_formatter.dart';
 
-/// Runs the specified [script] and saves its code coverage as LCOV format.
+/// Runs the specified [script] with optional [arguments].
+/// Uploads the collected coverage data to the Coveralls service.
+void collectAndUploadCoverage(dynamic script, {List<String> arguments}) {
+  var path = script is FilePath ? script : new FilePath(script);
+  var coverage = new Coverage().collect(path.asFile, arguments: arguments);
+  new CoverallsClient().upload(coverage);
+}
+
+/// Runs asynchronously the specified [script] with optional [arguments].
+/// Uploads the collected coverage data to the Coveralls service.
+Future collectAndUploadCoverageAsync(dynamic script, {List<String> arguments}) async {
+  var path = script is FilePath ? script : new FilePath(script);
+  var coverage = await new Coverage().collectAsync(path.asFile, arguments: arguments);
+  await new CoverallsClient().uploadAsync(coverage);
+}
+
+/// Runs the specified [script] and saves its coverage data as LCOV format.
 ///
 /// The [output] path specifies the destination file.
 /// The [arguments] list provides the optional script arguments.
