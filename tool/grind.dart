@@ -30,6 +30,8 @@ void fix() => DartFmt.format(_sources);
 @Task()
 void lint() => Analyzer.analyze(_sources);
 
-/// Runs the unit tests.
+/// Runs all the test suites.
 @Task()
-void test() => collectCoverage('test/all.dart', output: 'var/coverage.lcov');
+void test() {
+  collectCoverage('test/all.dart', output: 'var/lcov.info');
+}

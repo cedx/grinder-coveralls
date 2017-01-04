@@ -16,18 +16,22 @@ class Coverage {
   List<String> reportOn;
 
   /// Runs the specified [script] and returns its code coverage in LCOV format.
-  String collect(String script, {List<String> arguments, Duration timeout}) {
-    var lcov;
-    new Future<String>.sync(() => collectAsync(script, arguments: arguments, timeout: timeout))
-      .then((coverage) => lcov = coverage)
-      .catchError((error) => lcov = ''); // TODO rethrow ?
+  String collect(File script, {List<String> arguments, Duration timeout}) {
+    var output;
+    new Future<String>
+      .sync(() => collectAsync(script, arguments: arguments, timeout: timeout))
+      .then((coverage) => output = coverage);
 
-    return lcov;
+    return output;
   }
 
-  /// Runs the specified [script] asynchronously and returns its code coverage in LCOV format.
-  Future<String> collectAsync(String script, {List<String> arguments, Duration timeout}) async {
-    var coverage = await runAndCollect(script, scriptArgs: arguments);
+  /// Runs asynchronously the specified [script] and returns its code coverage in LCOV format.
+  Future<String> collectAsync(File script, {List<String> arguments, Duration timeout}) async {
+    assert(script != null);
+    if (!await script.exists())
+      throw new ArgumentError.value(script, 'script', 'The specified file does not exist.');
+
+    var coverage = await runAndCollect(script.path, scriptArgs: arguments);
     var resolver = new Resolver(packagesPath: packagesPath, sdkRoot: sdkDir.path);
     return await new LcovFormatter(resolver, basePath: basePath, reportOn: reportOn).format(coverage);
   }
