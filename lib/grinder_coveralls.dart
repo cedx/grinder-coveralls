@@ -22,7 +22,7 @@ void collectCoverage(dynamic script, String output, {List<String> arguments}) {
   getFile(output).writeAsStringSync(coverage);
 }
 
-/// Runs asynchronously the specified [script] and saves its code coverage as LCOV format.
+/// Runs asynchronously the specified [script] and saves its coverage data as LCOV format.
 ///
 /// The [output] path specifies the destination file.
 /// The [arguments] list provides the optional script arguments.
