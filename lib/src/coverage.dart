@@ -17,12 +17,12 @@ class Coverage {
 
   /// Runs the specified [script] and returns its coverage data as LCOV format.
   String collect(File script, {List<String> arguments, Duration timeout}) {
-    var output;
+    var coverage;
     new Future<String>
       .sync(() => collectAsync(script, arguments: arguments, timeout: timeout))
-      .then((coverage) => output = coverage);
+      .then((cov) => coverage = cov);
 
-    return output;
+    return coverage;
   }
 
   /// Runs asynchronously the specified [script] and returns its coverage data as LCOV format.

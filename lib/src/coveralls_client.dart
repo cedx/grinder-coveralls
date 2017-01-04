@@ -21,7 +21,10 @@ class CoverallsClient {
   /// Uploads the specified code [coverage] report in LCOV format to the Coveralls service.
   http.Response upload(String coverage) {
     var response;
-    new Future<String>.sync(() => uploadAsync(coverage)).then((res) => response = res);
+    new Future<String>
+      .sync(() => uploadAsync(coverage))
+      .then((res) => response = res);
+
     return response;
   }
 
