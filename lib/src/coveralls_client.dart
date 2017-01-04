@@ -1,17 +1,5 @@
 part of grinder_coveralls;
 
-/// Uploads the specified code [coverage] report in LCOV format to the Coveralls service.
-void uploadCoverage(dynamic coverage) {
-  var path = coverage is FilePath ? coverage : new FilePath(coverage);
-  new CoverallsClient().uploadFile(path.asFile);
-}
-
-/// Uploads asynchronously the specified code [coverage] report in LCOV format to the Coveralls service.
-Future uploadCoverageAsync(dynamic coverage) async {
-  var path = coverage is FilePath ? coverage : new FilePath(coverage);
-  await new CoverallsClient().uploadFileAsync(path.asFile);
-}
-
 /// Uploads code coverage reports to the [Coveralls](https://coveralls.io) service.
 class CoverallsClient {
 
@@ -32,9 +20,9 @@ class CoverallsClient {
 
   /// Uploads the specified code [coverage] report in LCOV format to the Coveralls service.
   http.Response upload(String coverage) {
-    var lcov;
-    new Future<String>.sync(() => uploadAsync(coverage)).then((response) => lcov = response);
-    return lcov;
+    var response;
+    new Future<String>.sync(() => uploadAsync(coverage)).then((res) => response = res);
+    return response;
   }
 
   /// Uploads asynchronously the specified code [coverage] report in LCOV format to the Coveralls service.

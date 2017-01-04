@@ -12,11 +12,9 @@ Future main(List<String> args) => grind(args);
 @Task()
 void clean() => defaultClean();
 
-/// Collects the code coverage and uploads the results.
+/// Uploads the code coverage report.
 @Task()
-void coverage() {
-  // TODO
-}
+void coverage() => uploadCoverage('var/lcov.info');
 
 /// Builds the documentation.
 @Task()
@@ -32,6 +30,4 @@ void lint() => Analyzer.analyze(_sources);
 
 /// Runs all the test suites.
 @Task()
-void test() {
-  collectCoverage('test/all.dart', output: 'var/lcov.info');
-}
+void test() => collectCoverage('test/all.dart', 'var/lcov.info');
