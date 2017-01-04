@@ -5,7 +5,7 @@
 Collect your code coverage in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format and upload it to the [Coveralls](https://coveralls.io) service.
 
 ## Getting started
-If you haven't used Grinder before, be sure to check out the [related documentation](https://google.github.io/grinder.dart), as it explains how to create a `grind.dart` file and define project tasks. Once you're familiar with that process, you may install this plug-in.
+If you haven't used Grinder before, be sure to check out the [related documentation](https://google.github.io/grinder.dart), as it explains how to create a `grind.dart` file and to define project tasks. Once you're familiar with that process, you may install this plug-in.
 
 ## Installing via [Pub](https://pub.dartlang.org)
 
@@ -31,8 +31,31 @@ Now in your [Dart](https://www.dartlang.org) code, you can use:
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 ```
 
+## Usage
+
+### The easy way
+The simplest way to collect and upload your coverage data is to use the dedicated set of functions.
+
+#### 1. Collect the code coverage
+TODO
+
+#### 2. Upload the coverage report
+TODO
+
+### The hard way
+TODO
+
+#### 1. Collect the code coverage
+TODO
+
+#### 2. Format the coverage data
+TODO
+
+#### 3. Upload the coverage report
+TODO
+
 ## Examples
-You can find a more detailled sample in the `example` folder:  
+You can find a detailled sample in the `example` folder:  
 [Sample Grinder tasks](https://github.com/cedx/grinder-coveralls/blob/master/example/grind.dart)
 
 ## See also
