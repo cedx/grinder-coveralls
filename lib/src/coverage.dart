@@ -1,5 +1,27 @@
 part of grinder_coveralls;
 
+/// Runs the specified [script] and returns its code coverage in LCOV format.
+///
+/// The [arguments] list provides the optional script arguments.
+/// The [output] path specifies the optional destination file.
+String collectCoverage(dynamic script, {List<String> arguments, String output}) {
+  var path = script is FilePath ? script : new FilePath(script);
+  var coverage = new Coverage().collect(path.asFile, arguments: arguments);
+  if (output != null) getFile(output).writeAsStringSync(coverage);
+  return coverage;
+}
+
+/// Runs asynchronously the specified [script] and returns its code coverage in LCOV format.
+///
+/// The [arguments] list provides the optional script arguments.
+/// The [output] path specifies the optional destination file.
+Future<String> collectCoverageAsync(dynamic script, {List<String> arguments, String output}) async {
+  var path = script is FilePath ? script : new FilePath(script);
+  var coverage = await new Coverage().collectAsync(path.asFile, arguments: arguments);
+  if (output != null) await getFile(output).writeAsString(coverage);
+  return coverage;
+}
+
 /// Collects the code coverage of a Dart script in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
 class Coverage {
 

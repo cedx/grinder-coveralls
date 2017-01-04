@@ -1,6 +1,18 @@
 part of grinder_coveralls;
 
-/// Collects the code coverage in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format and uploads it to the [Coveralls](https://coveralls.io) service.
+/// Uploads the specified code [coverage] report in LCOV format to the Coveralls service.
+void uploadCoverage(dynamic coverage) {
+  var path = coverage is FilePath ? coverage : new FilePath(coverage);
+  new CoverallsClient().uploadFile(path.asFile);
+}
+
+/// Uploads asynchronously the specified code [coverage] report in LCOV format to the Coveralls service.
+Future uploadCoverageAsync(dynamic coverage) async {
+  var path = coverage is FilePath ? coverage : new FilePath(coverage);
+  await new CoverallsClient().uploadFileAsync(path.asFile);
+}
+
+/// Uploads code coverage reports to the [Coveralls](https://coveralls.io) service.
 class CoverallsClient {
 
   /// The URL of the API end point.
