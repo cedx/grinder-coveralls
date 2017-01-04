@@ -55,7 +55,7 @@ TODO
 TODO
 
 ## Examples
-You can find a `grind.dart` sample in the `example` folder:  
+You can find a sample `grind.dart` file in the `example` folder:  
 [Sample Grinder tasks](https://github.com/cedx/grinder-coveralls/blob/master/example/grind.dart)
 
 ## See also
