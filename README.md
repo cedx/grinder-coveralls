@@ -34,16 +34,26 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 ## Usage
 
 ### The easy way
-The simplest way to collect and upload your coverage data is to use the [dedicated set of functions](https://cedx.github.io/grinder-coveralls/grinder_coveralls-library.html#functions).
+The simplest way to collect and upload your coverage data is to use the [dedicated set of functions](https://github.com/cedx/grinder-coveralls/blob/master/lib/grinder_coveralls.dart).
 
 #### 1. Collect the code coverage
-TODO
+
+```dart
+@Task('Collects the coverage data and saves it as LCOV format')
+void coverageCollect() => collectCoverage('test/all.dart', 'lcov.info');
+```
 
 #### 2. Upload the coverage report
-TODO
+
+```dart
+@Task('Uploads the LCOV coverage report to Coveralls')
+@Depends(coverageCollect)
+void coverageUpload() => uploadCoverage('lcov.info');
+```
 
 ### The hard way
-TODO
+This package uses some defaults based on the [Pub package layout](https://www.dartlang.org/tools/pub/package-layout) conventions.
+To customize its behavior, you can use the underlying classes used by the helper functions.
 
 #### 1. Collect the code coverage
 TODO
