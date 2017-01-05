@@ -1,6 +1,6 @@
 part of grinder_coveralls;
 
-/// Formats [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage reports to the format used by the [Coveralls](https://coveralls.io) service.
+/// Parses [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage reports as hitmaps.
 class CoverallsFormatter {
 
   /// TODO
