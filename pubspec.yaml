@@ -10,7 +10,7 @@ environment:
   sdk: '>=1.21.0 <2.0.0'
 
 dependencies:
-  coverage: ^0.8.0
+  coverage: ^0.8.1
   grinder: ^0.8.0
   http: ^0.11.3
 
