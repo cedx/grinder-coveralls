@@ -19,17 +19,7 @@ class CoverallsClient {
   final StreamController<http.Response> _onResponse = new StreamController<http.Response>.broadcast();
 
   /// Uploads the specified code [coverage] report in LCOV format to the Coveralls service.
-  http.Response upload(String coverage) {
-    var response;
-    new Future<String>
-      .sync(() => uploadAsync(coverage))
-      .then((res) => response = res);
-
-    return response;
-  }
-
-  /// Uploads asynchronously the specified code [coverage] report in LCOV format to the Coveralls service.
-  Future<http.Response> uploadAsync(String coverage) async {
+  Future<http.Response> upload(String coverage) async {
     assert(coverage != null);
     var jsonFile = JSON.encode({
       'service_name': 'travis-ci'
@@ -43,8 +33,5 @@ class CoverallsClient {
   }
 
   /// Uploads the specified code [coverage] report in LCOV format to the Coveralls service.
-  http.Response uploadFile(File coverage) => upload(coverage.readAsStringSync());
-
-  /// Uploads asynchronously the specified code [coverage] report in LCOV format to the Coveralls service.
-  Future<http.Response> uploadFileAsync(File coverage) async => await uploadAsync(await coverage.readAsString());
+  Future<http.Response> uploadFile(File coverage) async => await upload(await coverage.readAsString());
 }

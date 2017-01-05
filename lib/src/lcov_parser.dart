@@ -1,19 +1,43 @@
 part of grinder_coveralls;
 
-/// Parses [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage reports as hitmaps.
-class CoverallsFormatter {
+/// Parses [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage reports as [Coveralls](https://coveralls.io) hitmaps.
+class LcovParser {
 
   /// TODO
-  String format(String coverage) {
+  Future<Map> parse(String coverage) {
+    List<Map> data = [];
+    Map item;
+
+    List<String> lines = ['end_of_record'];
+    lines.addAll(coverage.split(new RegExp(r'\r?\n')));
+    lines.forEach((String line) {
+      line = line.trim();
+
+      if (line.contains('end_of_record')) {
+        data.add(item);
+        item = {
+          'branches': {
+            'details': [],
+            'found': 0,
+            'hit': 0
+          },
+          'functions': {
+            'details': [],
+            'found': 0,
+            'hit': 0
+          },
+          'lines': {
+            'details': [],
+            'found': 0,
+            'hit': 0
+          }
+        };
+      }
+    });
+
     return null;
   }
 
   /// TODO
-  Future<String> formatAsync(String coverage) => new Future<String>.value(format(coverage));
-
-  /// TODO
-  String formatFile(File coverage) => format(coverage.readAsStringSync());
-
-  /// TODO
-  Future<String> formatFileAsync(File coverage) async => format(await coverage.readAsString());
+  Future<Map> parseFile(File coverage) async => parse(await coverage.readAsString());
 }
