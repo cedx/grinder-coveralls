@@ -15,23 +15,7 @@ class LcovParser {
 
       if (line.contains('end_of_record')) {
         data.add(item);
-        item = {
-          'branches': {
-            'details': [],
-            'found': 0,
-            'hit': 0
-          },
-          'functions': {
-            'details': [],
-            'found': 0,
-            'hit': 0
-          },
-          'lines': {
-            'details': [],
-            'found': 0,
-            'hit': 0
-          }
-        };
+        item = _createRecord();
       }
     });
 
@@ -40,4 +24,23 @@ class LcovParser {
 
   /// TODO
   Future<Map> parseFile(File coverage) async => parse(await coverage.readAsString());
+
+  /// TODO
+  Map<String, Map> _createRecord() => {
+    'branches': {
+      'details': [],
+      'found': 0,
+      'hit': 0
+    },
+    'functions': {
+      'details': [],
+      'found': 0,
+      'hit': 0
+    },
+    'lines': {
+      'details': [],
+      'found': 0,
+      'hit': 0
+    }
+  };
 }
