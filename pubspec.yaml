@@ -11,8 +11,9 @@ environment:
 
 dependencies:
   coverage: ^0.8.1
+  coveralls:
+    path: /repo/coveralls.dart
   grinder: ^0.8.0
-  http: ^0.11.3
 
 dev_dependencies:
   test: ^0.12.18
