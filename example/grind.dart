@@ -6,18 +6,18 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 Future main(List<String> args) => grind(args);
 
 /// Collects and uploads the coverage data in one pass.
-@Task()
-void coverage() => collectAndUploadCoverage('test/all.dart');
+@Task('Collect and upload the coverage')
+Future coverage() => collectAndUploadCoverage('test/all.dart');
 
 /// Collects the coverage data and saves it as LCOV format.
-@Task()
-void coverageCollect() => collectCoverage('test/all.dart', 'lcov.info');
+@Task('Collect the coverage data')
+Future coverageCollect() => collectCoverage('test/all.dart', 'lcov.info');
 
-/// Uploads the LCOV coverage report to [Coveralls](https://coveralls.io).
-@Task()
+/// Uploads the LCOV coverage report to Coveralls.
+@Task('Upload the coverage report')
 @Depends(coverageCollect)
-void coverageUpload() => uploadCoverage('lcov.info');
+Future coverageUpload() => uploadCoverage('lcov.info');
 
 /// Runs all the test suites.
-@Task()
-void test() => new TestRunner().test(files: 'test/all.dart');
+@Task('Run the tests')
+Future test() => new TestRunner().testAsync(files: 'test/all.dart');
