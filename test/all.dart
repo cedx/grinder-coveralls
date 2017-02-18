@@ -1,4 +1,6 @@
+import 'collector_test.dart' as collector_test;
+
 /// Tests all the features of the package.
 void main() {
-  // TODO
+  collector_test.main();
 }
