@@ -1,4 +1,5 @@
 # Grinder-Coveralls
+![Release](https://img.shields.io/pub/v/grinder_coveralls.svg) ![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-coveralls.dart/badge.svg) ![Build](https://travis-ci.org/cedx/grinder-coveralls.dart.svg)
 
 [Coveralls](https://coveralls.io) plug-in for [Grinder](https://google.github.io/grinder.dart), the [Dart](https://www.dartlang.org) build system.
 
@@ -24,13 +25,6 @@ Install this package and its dependencies from a command prompt:
 $ pub get
 ```
 
-### 3. Import it
-Now in your [Dart](https://www.dartlang.org) code, you can use:
-
-```dart
-import 'package:grinder_coveralls/grinder_coveralls.dart';
-```
-
 ## Usage
 
 ### The easy way
@@ -39,24 +33,38 @@ The simplest way to collect and upload your coverage data is to use the [dedicat
 #### 1. Collect the code coverage
 
 ```dart
+import 'dart:async';
+import 'package:grinder/grinder.dart';
+import 'package:grinder_coveralls/grinder_coveralls.dart';
+
 @Task('Collects the coverage data and saves it as LCOV format')
-void coverageCollect() => collectCoverage('test/all.dart', 'lcov.info');
+Future coverageCollect() => collectCoverage('test/all.dart', 'lcov.info');
 ```
 
 #### 2. Upload the coverage report
 
 ```dart
+import 'dart:async';
+import 'package:grinder/grinder.dart';
+import 'package:grinder_coveralls/grinder_coveralls.dart';
+
 @Task('Uploads the LCOV coverage report to Coveralls')
 @Depends(coverageCollect)
-void coverageUpload() => uploadCoverage('lcov.info');
+Future coverageUpload() => uploadCoverage('lcov.info');
 ```
 
 ### The hard way
 This package uses some defaults based on the [Pub package layout](https://www.dartlang.org/tools/pub/package-layout) conventions.
-To customize its behavior, you can use the underlying classes used by the helper functions.
+To customize its behavior, you can use the underlying classes used by the helper functions: the `Collector` class from this package, and the classes exported from the [`coveralls` package](https://pub.dartlang.org/packages/coveralls).
 
 #### 1. Collect the code coverage
 TODO
+
+```dart
+import 'dart:async';
+import 'package:grinder/grinder.dart';
+import 'package:grinder_coveralls/grinder_coveralls.dart';
+```
 
 #### 2. Format the coverage data
 TODO
