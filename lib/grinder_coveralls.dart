@@ -2,13 +2,12 @@
 library grinder_coveralls;
 
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
-import 'package:http/http.dart' as http;
 import 'package:coverage/coverage.dart';
+import 'package:coveralls/coveralls.dart';
 import 'package:grinder/grinder.dart';
 
-part 'src/client.dart';
+export 'package:coveralls/coveralls.dart';
 part 'src/collector.dart';
 
 /// Runs the specified [script] with optional [arguments].
@@ -29,8 +28,9 @@ Future collectCoverage(dynamic script, String output, {List<String> arguments}) 
   return getFile(output).writeAsString(coverage);
 }
 
-/// Uploads the specified code [coverage] report in LCOV format to the Coveralls service.
-Future uploadCoverage(dynamic coverage) async {
-  var path = coverage is FilePath ? coverage : new FilePath(coverage);
-  return new Client().uploadFile(path.asFile);
+/// Uploads the specified code coverage [report] in LCOV format to the Coveralls service.
+Future uploadCoverage(dynamic report) async {
+  var path = report is FilePath ? report : new FilePath(report);
+  var coverage = await path.asFile.readAsString();
+  return new Client().upload(coverage);
 }
