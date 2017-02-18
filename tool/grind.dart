@@ -9,25 +9,26 @@ const List<String> _sources = const ['lib', 'test', 'tool'];
 Future main(List<String> args) => grind(args);
 
 /// Deletes all generated files and reset any saved state.
-@Task()
+@Task('Delete the generated files')
 void clean() => defaultClean();
 
 /// Uploads the code coverage report.
-@Task()
-void coverage() => uploadCoverage('var/lcov.info');
+@Task('Upload the code coverage')
+@Depends(test)
+Future coverage() => uploadCoverage('var/lcov.info');
 
 /// Builds the documentation.
-@Task()
+@Task('Build the documentation')
 void doc() => DartDoc.doc();
 
 /// Fixes the coding standards issues.
-@Task()
+@Task('Fix the coding issues')
 void fix() => DartFmt.format(_sources);
 
 /// Performs static analysis of source code.
-@Task()
+@Task('Perform the static analysis')
 void lint() => Analyzer.analyze(_sources);
 
 /// Runs all the test suites.
-@Task()
-void test() => collectCoverage('test/all.dart', 'var/lcov.info');
+@Task('Run the tests')
+Future test() => collectCoverage('test/all.dart', 'var/lcov.info');
