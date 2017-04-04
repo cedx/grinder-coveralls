@@ -3,5 +3,11 @@ import 'package:test/test.dart';
 
 /// Tests the features of the [Collector] class.
 void main() => group('Collector', () {
-  // TODO
+  group('collect', () {
+    var script = 'test/fixtures/test.dart';
+  });
+
+  group('collectHitmap', () {
+    var script = 'test/fixtures/test.dart';
+  });
 });
