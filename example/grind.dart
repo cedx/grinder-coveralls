@@ -20,4 +20,4 @@ Future coverageUpload() => uploadCoverage('lcov.info');
 
 /// Runs all the test suites.
 @Task('Run the tests')
-Future test() => new TestRunner().testAsync(files: 'test/all.dart');
+void test() => new TestRunner().test(files: 'test/all.dart');
