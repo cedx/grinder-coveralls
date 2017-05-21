@@ -13,8 +13,8 @@ part 'src/collector.dart';
 /// Runs the specified [script] with optional [arguments].
 /// Uploads the collected coverage data to the Coveralls service.
 Future collectAndUploadCoverage(dynamic script, {List<String> arguments}) async {
-  var path = script is FilePath ? script : new FilePath(script);
-  var coverage = await new Collector().collect(path.asFile, arguments: arguments);
+  var file = new FilePath(script).asFile;
+  var coverage = await new Collector().collect(file, arguments: arguments);
   return new Client().upload(coverage);
 }
 
@@ -23,14 +23,13 @@ Future collectAndUploadCoverage(dynamic script, {List<String> arguments}) async 
 /// The [output] path specifies the destination file.
 /// The [arguments] list provides the optional script arguments.
 Future collectCoverage(dynamic script, String output, {List<String> arguments}) async {
-  var path = script is FilePath ? script : new FilePath(script);
-  var coverage = await new Collector().collect(path.asFile, arguments: arguments);
+  var file = new FilePath(script).asFile;
+  var coverage = await new Collector().collect(file, arguments: arguments);
   return getFile(output).writeAsString(coverage);
 }
 
 /// Uploads the specified code coverage [report] in LCOV format to the Coveralls service.
 Future uploadCoverage(dynamic report) async {
-  var path = report is FilePath ? report : new FilePath(report);
-  var coverage = await path.asFile.readAsString();
-  return new Client().upload(coverage);
+  var file = new FilePath(report).asFile;
+  return new Client().upload(await file.readAsString());
 }
