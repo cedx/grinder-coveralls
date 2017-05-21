@@ -1,5 +1,5 @@
 # Grinder-Coveralls
-![Release](https://img.shields.io/pub/v/grinder_coveralls.svg) ![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-coveralls.dart/badge.svg) ![Build](https://travis-ci.org/cedx/grinder-coveralls.dart.svg)
+![Runtime](https://img.shields.io/badge/dart-%3E%3D1.23-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_coveralls.svg) ![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-coveralls.dart/badge.svg) ![Build](https://travis-ci.org/cedx/grinder-coveralls.dart.svg)
 
 [Coveralls](https://coveralls.io) plug-in for [Grinder](https://google.github.io/grinder.dart), the [Dart](https://www.dartlang.org) build system.
 
