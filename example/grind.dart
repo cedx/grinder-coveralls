@@ -11,12 +11,12 @@ Future coverage() => collectAndUploadCoverage('test/all.dart');
 
 /// Collects the coverage data and saves it as LCOV format.
 @Task('Collect the coverage data')
-Future coverageCollect() => collectCoverage('test/all.dart', 'lcov.info');
+Future coverageCollect() => collectCoverage('test/all.dart', 'out/lcov.info');
 
 /// Uploads the LCOV coverage report to Coveralls.
 @Task('Upload the coverage report')
 @Depends(coverageCollect)
-Future coverageUpload() => uploadCoverage('lcov.info');
+Future coverageUpload() => uploadCoverage('out/lcov.info');
 
 /// Runs all the test suites.
 @Task('Run the tests')

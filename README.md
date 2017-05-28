@@ -25,6 +25,8 @@ Install this package and its dependencies from a command prompt:
 $ pub get
 ```
 
+Once the plug-in has been installed, it may be enabled inside your `grind.dart` file.
+
 ## Usage
 
 ### The easy way
