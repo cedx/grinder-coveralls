@@ -1,9 +1,8 @@
+dart: [dev]
+dist: trusty
 language: dart
-dart: stable
+notifications: {email: false}
 sudo: false
 
-notifications:
-  email: false
-
 script: pub run grinder test
-after_script: pub run grinder coverage
+after_success: pub run coveralls var/lcov.info

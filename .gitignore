@@ -1,7 +1,8 @@
-/.idea/
-/.pub/
+/.*/
+/build/
 /doc/api/
 /var/
+/web/
 
 /*.iml
 /**/.DS_Store
