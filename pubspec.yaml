@@ -7,7 +7,7 @@ documentation: https://cedx.github.io/grinder-coveralls
 homepage: https://github.com/cedx/grinder-coveralls
 
 environment:
-  sdk: '>=2.0.0-dev.69 <2.0.0'
+  sdk: '>=2.0.0-dev.69 <3.0.0'
 
 dependencies:
   coverage: ^0.12.1
