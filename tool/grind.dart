@@ -16,7 +16,7 @@ void clean() {
 /// Uploads the code coverage report.
 @Task('Upload the code coverage')
 @Depends(test)
-Future coverage() => uploadCoverage('var/lcov.info');
+Future<void> coverage() => uploadCoverage('var/lcov.info');
 
 /// Builds the documentation.
 @Task('Build the documentation')
@@ -35,7 +35,7 @@ void lint() => Analyzer.analyze(existingSourceDirs);
 
 /// Runs all the test suites.
 @Task('Run the tests')
-Future test() => collectCoverage('test/all.dart', 'var/lcov.info');
+Future<void> test() => collectCoverage('test/all.dart', 'var/lcov.info');
 
 /// Upgrades the project to the latest revision.
 @Task('Upgrade the project')

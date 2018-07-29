@@ -40,7 +40,7 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
 @Task('Collects the coverage data and saves it as LCOV format')
-Future coverageCollect() => collectCoverage('test/all.dart', 'lcov.info');
+Future<void> coverageCollect() => collectCoverage('test/all.dart', 'lcov.info');
 ```
 
 #### 2. Upload the coverage report
@@ -52,7 +52,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 
 @Task('Uploads the LCOV coverage report to Coveralls')
 @Depends(coverageCollect)
-Future coverageUpload() => uploadCoverage('lcov.info');
+Future<void> coverageUpload() => uploadCoverage('lcov.info');
 ```
 
 ### The hard way
