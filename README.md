@@ -1,5 +1,5 @@
 # Grinder-Coveralls
-![Runtime](https://img.shields.io/badge/dart-%3E%3D1.23-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_coveralls.svg) ![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-coveralls.dart/badge.svg) ![Build](https://travis-ci.org/cedx/grinder-coveralls.dart.svg)
+![Runtime](https://img.shields.io/badge/dart-%3E%3D2.0-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_coveralls.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-coveralls.dart/badge.svg) ![Build](https://travis-ci.com/cedx/grinder-coveralls.dart.svg)
 
 [Coveralls](https://coveralls.io) plug-in for [Grinder](https://google.github.io/grinder.dart), the [Dart](https://www.dartlang.org) build system.
 
@@ -81,7 +81,7 @@ You can find a sample `grind.dart` file in the `example` folder:
 ## See also
 - [API reference](https://cedx.github.io/grinder-coveralls)
 - [Code coverage](https://coveralls.io/github/cedx/grinder-coveralls)
-- [Continuous integration](https://travis-ci.org/cedx/grinder-coveralls)
+- [Continuous integration](https://travis-ci.com/cedx/grinder-coveralls)
 
 ## License
 [Grinder-Coveralls](https://github.com/cedx/grinder-coveralls) is distributed under the Apache License, version 2.0.
