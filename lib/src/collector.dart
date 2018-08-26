@@ -1,4 +1,4 @@
-part of grinder_coveralls;
+part of '../grinder_coveralls.dart';
 
 /// Collects the coverage data of a Dart script as [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
 class Collector {
