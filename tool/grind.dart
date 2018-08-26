@@ -15,7 +15,6 @@ void clean() {
 
 /// Uploads the code coverage report.
 @Task('Upload the code coverage')
-@Depends(test)
 Future<void> coverage() => uploadCoverage('var/lcov.info');
 
 /// Builds the documentation.
