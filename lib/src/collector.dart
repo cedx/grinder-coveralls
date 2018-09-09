@@ -17,8 +17,8 @@ class Collector {
 
   /// Runs the specified [script] and returns its coverage data as LCOV format.
   Future<String> collect(File script, {List<String> arguments, bool checked = true, Duration timeout}) async {
-    var hitmap = await collectHitmap(script, arguments: arguments, checked: checked, timeout: timeout);
-    var resolver = Resolver(packagesPath: packagesPath, sdkRoot: sdkDir.path);
+    final hitmap = await collectHitmap(script, arguments: arguments, checked: checked, timeout: timeout);
+    final resolver = Resolver(packagesPath: packagesPath, sdkRoot: sdkDir.path);
     return LcovFormatter(resolver, basePath: basePath, reportOn: reportOn).format(hitmap);
   }
 
@@ -29,7 +29,7 @@ class Collector {
     if (!script.existsSync())
       throw FileSystemException('The specified file is not found.', script.path);
 
-    var report = await runAndCollect(script.path, checked: checked, scriptArgs: arguments, timeout: timeout);
+    final report = await runAndCollect(script.path, checked: checked, scriptArgs: arguments, timeout: timeout);
     return report.containsKey('coverage') ? createHitmap(report['coverage']) : const {};
   }
 }
