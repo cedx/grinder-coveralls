@@ -1,9 +1,12 @@
 # Grinder-Coveralls
-![Runtime](https://img.shields.io/badge/dart-%3E%3D2.0-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_coveralls.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-coveralls.dart/badge.svg) ![Build](https://travis-ci.com/cedx/grinder-coveralls.dart.svg)
+![Runtime](https://img.shields.io/badge/dart-%3E%3D2.2-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_coveralls.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-coveralls/badge.svg) ![Build](https://travis-ci.com/cedx/grinder-coveralls.svg)
 
 [Coveralls](https://coveralls.io) plug-in for [Grinder](https://google.github.io/grinder.dart), the [Dart](https://www.dartlang.org) build system.
 
 Collect your code coverage as [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format and upload it to the [Coveralls](https://coveralls.io) service.
+
+
+
 
 ## Getting started
 If you haven't used Grinder before, be sure to check out the [related documentation](https://google.github.io/grinder.dart), as it explains how to create a `grind.dart` file and to define project tasks. Once you're familiar with that process, you may install this plug-in.
@@ -78,10 +81,18 @@ TODO
 You can find a sample `grind.dart` file in the `example` folder:  
 [Sample Grinder tasks](https://github.com/cedx/grinder-coveralls/blob/master/example/grind.dart)
 
-## See also
-- [API reference](https://cedx.github.io/grinder-coveralls)
-- [Code coverage](https://coveralls.io/github/cedx/grinder-coveralls)
-- [Continuous integration](https://travis-ci.com/cedx/grinder-coveralls)
+
+
+
+
+## Documentation
+- [User guide](https://dev.belin.io/grinder-coveralls)
+- [API reference](https://dev.belin.io/grinder-coveralls/api)
+
+## Development
+- [Git repository](https://github.com/cedx/grinder-coveralls)
+- [Pub package](https://pub.dartlang.org/packages/grinder_coveralls)
+- [Submit an issue](https://github.com/cedx/grinder-coveralls/issues)
 
 ## License
-[Grinder-Coveralls](https://github.com/cedx/grinder-coveralls) is distributed under the Apache License, version 2.0.
+[Grinder-Coveralls](https://dev.belin.io/grinder-coveralls) is distributed under the MIT License.
