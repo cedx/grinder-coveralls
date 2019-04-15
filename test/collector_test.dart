@@ -1,3 +1,4 @@
+@TestOn('vm')
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 import 'package:test/test.dart';
 
