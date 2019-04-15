@@ -1,42 +1,44 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
 /// Starts the build system.
 Future<void> main(List<String> args) => grind(args);
 
-@Task('Delete the generated files')
+@Task('Deletes all generated files and reset any saved state')
 void clean() {
   defaultClean();
   ['.dart_tool/build', 'doc/api', webDir.path].map(getDir).forEach(delete);
-  FileSet.fromDir(getDir('var'), pattern: '*.{info,json}').files.forEach(delete);
+  FileSet.fromDir(getDir('var'), pattern: '*.{info,json}', recurse: true).files.forEach(delete);
 }
 
-@Task('Upload the code coverage')
+@Task('Uploads the results of the code coverage')
 Future<void> coverage() => uploadCoverage('var/lcov.info');
 
 @Task('Builds the documentation')
 Future<void> doc() async {
-  await File('CHANGELOG.md').copy('doc/about/changelog.md');
-  await File('LICENSE.md').copy('doc/about/license.md');
+  for (final path in ['CHANGELOG.md', 'LICENSE.md']) await getFile(path).copy('doc/about/${path.toLowerCase()}');
   DartDoc.doc();
-  run('mkdocs', arguments: ['build']);
+  run('mkdocs', arguments: ['build', '--config-file=doc/mkdocs.yml']);
+  ['doc/about/changelog.md', 'doc/about/license.md', '${webDir.path}/mkdocs.yml'].map(getFile).forEach(delete);
 }
 
-@Task('Fix the coding issues')
-void fix() => DartFmt.format(existingSourceDirs, lineLength: 200);
+@Task('Fixes the coding standards issues')
+void fix() => DartFmt.format(existingSourceDirs);
 
-@Task('Perform the static analysis')
+@Task('Performs the static analysis of source code')
 void lint() => Analyzer.analyze(existingSourceDirs);
 
-@Task('Run the tests')
+@Task('Runs the test suites')
 Future<void> test() => collectCoverage('test/all.dart', 'var/lcov.info');
 
-@Task('Upgrade the project')
+@Task('Upgrades the project to the latest revision')
 void upgrade() {
   run('git', arguments: ['reset', '--hard']);
   run('git', arguments: ['fetch', '--all', '--prune']);
   run('git', arguments: ['pull', '--rebase']);
   Pub.upgrade();
 }
+
+@Task('Watches for file changes')
+void watch() => Pub.run('build_runner', arguments: ['watch', '--delete-conflicting-outputs']);
