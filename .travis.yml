@@ -1,8 +1,7 @@
-dart: [stable]
-dist: trusty
+dart: [dev, stable]
+dist: xenial
 language: dart
 notifications: {email: false}
-sudo: false
 
 install: pub get
 script: pub run grinder test
