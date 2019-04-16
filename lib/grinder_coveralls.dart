@@ -1,7 +1,6 @@
 /// [Coveralls](https://coveralls.io) plug-in for the [Grinder](https://google.github.io/grinder.dart) build system.
 library grinder_coveralls;
 
-import 'dart:async';
 import 'dart:io';
 import 'package:coverage/coverage.dart';
 import 'package:coveralls/coveralls.dart';

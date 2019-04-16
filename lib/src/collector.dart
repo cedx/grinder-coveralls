@@ -25,10 +25,7 @@ class Collector {
   /// Runs the specified [script] and returns its coverage data as hitmap.
   /// Throws a [FileSystemException] if the script is not found.
   Future<Map> collectHitmap(File script, {List<String> arguments, bool checked = true, Duration timeout}) async {
-    assert(script != null);
-    if (!script.existsSync())
-      throw FileSystemException('The specified file is not found.', script.path);
-
+    if (!script.existsSync()) throw FileSystemException('The specified file is not found.', script.path);
     final report = await runAndCollect(script.path, checked: checked, scriptArgs: arguments, timeout: timeout);
     return report.containsKey('coverage') ? createHitmap(report['coverage']) : const {};
   }

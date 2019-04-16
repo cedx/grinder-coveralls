@@ -38,7 +38,6 @@ The simplest way to collect and upload your coverage data is to use the [dedicat
 #### 1. Collect the code coverage
 
 ```dart
-import 'dart:async';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
@@ -49,7 +48,6 @@ Future<void> coverageCollect() => collectCoverage('test/all.dart', 'lcov.info');
 #### 2. Upload the coverage report
 
 ```dart
-import 'dart:async';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
@@ -66,7 +64,6 @@ To customize its behavior, you can use the underlying classes used by the helper
 TODO
 
 ```dart
-import 'dart:async';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 ```

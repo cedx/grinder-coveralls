@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
