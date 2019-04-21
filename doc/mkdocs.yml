@@ -1,5 +1,5 @@
 site_name: Grinder-Coveralls
-site_description: Coveralls plug-in for Grinder, the Dart build system.
+site_description: Grinder plug-in collecting your code coverage as LCOV and uploading it to the Coveralls service.
 site_author: Cédric Belin - cedric@belin.io
 site_url: https://dev.belin.io/grinder-coveralls
 

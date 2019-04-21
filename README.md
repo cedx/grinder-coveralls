@@ -1,12 +1,7 @@
 # Grinder-Coveralls
 ![Runtime](https://img.shields.io/badge/dart-%3E%3D2.2-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_coveralls.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-coveralls/badge.svg) ![Build](https://travis-ci.com/cedx/grinder-coveralls.svg)
 
-[Coveralls](https://coveralls.io) plug-in for [Grinder](https://google.github.io/grinder.dart), the [Dart](https://www.dartlang.org) build system.
-
-Collect your code coverage as [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format and upload it to the [Coveralls](https://coveralls.io) service.
-
-
-
+[Grinder](https://google.github.io/grinder.dart) plug-in collecting your code coverage as [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) and uploading it to the [Coveralls](https://coveralls.io) service.
 
 ## Getting started
 If you haven't used Grinder before, be sure to check out the [related documentation](https://google.github.io/grinder.dart), as it explains how to create a `grind.dart` file and to define project tasks. Once you're familiar with that process, you may install this plug-in.
@@ -18,6 +13,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 devDpendencies:
+  grinder: *
   grinder_coveralls: *
 ```
 
