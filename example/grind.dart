@@ -1,22 +1,17 @@
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart';
+import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 
 /// Starts the build system.
 Future<void> main(List<String> args) => grind(args);
 
-/// Collects and uploads the coverage data in one pass.
-@Task('Collect and upload the coverage')
-Future<void> coverage() => collectAndUploadCoverage('test/all.dart');
+@Task('Collects and uploads the coverage data in one pass')
+Future<void> collectAndUploadCoverage() async =>
+  coveralls.uploadCoverage(await coveralls.collectCoverage(getDir('test')));
 
-/// Collects the coverage data and saves it as LCOV format.
-@Task('Collect the coverage data')
-Future<void> coverageCollect() => collectCoverage('test/all.dart', 'out/lcov.info');
+@Task('Collects the coverage data and saves it as LCOV format')
+Future<void> collectCoverage() =>
+  coveralls.collectCoverage(getDir('test'), saveAs: 'path/to/lcov.info');
 
-/// Uploads the LCOV coverage report to Coveralls.
-@Task('Upload the coverage report')
-@Depends(coverageCollect)
-Future<void> coverageUpload() => uploadCoverage('out/lcov.info');
-
-/// Runs all the test suites.
-@Task('Run the tests')
-void test() => TestRunner().test(files: 'test/all.dart');
+@Task('Uploads the LCOV coverage report to the Coveralls service')
+Future<void> uploadCoverage() =>
+  coveralls.uploadFile('path/to/lcov.info');
