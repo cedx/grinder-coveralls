@@ -48,7 +48,6 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
 @Task('Uploads the LCOV coverage report to Coveralls')
-@Depends(coverageCollect)
 Future<void> coverageUpload() => uploadCoverage('lcov.info');
 ```
 
