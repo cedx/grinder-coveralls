@@ -6,12 +6,12 @@ Future<void> main(List<String> args) => grind(args);
 
 @Task('Collects and uploads the coverage data in one pass')
 Future<void> collectAndUploadCoverage() async =>
-  coveralls.uploadCoverage(await coveralls.collectCoverage(getFile('test/all.dart')));
+  coveralls.uploadCoverage(await coveralls.collectCoverage(getDir('test')));
 
 @Task('Collects the coverage data and saves it as LCOV format')
 Future<void> collectCoverage() =>
-  coveralls.collectCoverage(getFile('test/all.dart'), saveAs: 'path/to/lcov.info');
+  coveralls.collectCoverage(getDir('test'), saveAs: 'path/to/lcov.info');
 
 @Task('Uploads the LCOV coverage report to the Coveralls service')
-Future<void> uploadCoverage() =>
-  coveralls.uploadCoverageFile('path/to/lcov.info');
+Future<void> uploadCoverage() async =>
+  coveralls.uploadCoverage(await getFile('path/to/lcov.info').readAsString());
