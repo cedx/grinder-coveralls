@@ -12,7 +12,7 @@ void clean() {
 }
 
 @Task('Uploads the results of the code coverage')
-Future<void> coverage() => uploadCoverageFile('var/lcov.info');
+Future<void> coverage() async => uploadCoverage(await getFile('var/lcov.info').readAsString());
 
 @Task('Builds the documentation')
 Future<void> doc() async {
@@ -29,7 +29,7 @@ void fix() => DartFmt.format(existingSourceDirs);
 void lint() => Analyzer.analyze(existingSourceDirs);
 
 @Task('Runs the test suites')
-Future<void> test() => collectCoverage(getDir('test'), reportOn: ['lib'], saveAs: 'var/lcov.info');
+Future<void> test() => collectCoverage(getDir('test'), reportOn: [libDir.path], saveAs: 'var/lcov.info');
 
 @Task('Upgrades the project to the latest revision')
 void upgrade() {
