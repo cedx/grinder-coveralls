@@ -6,11 +6,11 @@ Future<void> main(List<String> args) => grind(args);
 
 @Task('Collects and uploads the coverage data in one pass')
 Future<void> collectAndUploadCoverage() async =>
-  coveralls.uploadCoverage(await coveralls.collectCoverage(getDir('test')));
+  coveralls.uploadCoverage(await coveralls.collectCoverage(getDir('test'), reportOn: [libDir.path]));
 
 @Task('Collects the coverage data and saves it as LCOV format')
 Future<void> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), saveAs: 'path/to/lcov.info');
+  coveralls.collectCoverage(getDir('test'), reportOn: [libDir.path], saveAs: 'path/to/lcov.info');
 
 @Task('Uploads the LCOV coverage report to the Coveralls service')
 Future<void> uploadCoverage() async =>
