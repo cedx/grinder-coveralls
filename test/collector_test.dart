@@ -4,11 +4,15 @@ import 'package:test/test.dart';
 
 /// Tests the features of the [Collector] class.
 void main() => group('Collector', () {
-  group('collect', () {
-    const script = 'test/fixtures/test.dart';
+  group('.collectDirectory()', () {
+    // TODO
   });
 
-  group('collectHitmap', () {
-    const script = 'test/fixtures/test.dart';
+  group('.collectFile()', () {
+    // TODO
+  });
+
+  group('.collectFiles()', () {
+    // TODO
   });
 });

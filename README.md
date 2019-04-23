@@ -13,7 +13,6 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 devDpendencies:
-  grinder: *
   grinder_coveralls: *
 ```
 
@@ -38,7 +37,7 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
 @Task('Collects the coverage data and saves it as LCOV format')
-Future<void> coverageCollect() => collectCoverage('test/all.dart', 'lcov.info');
+Future<void> coverageCollect() => collectCoverage(getDir('test'), saveAs: 'lcov.info');
 ```
 
 #### 2. Upload the coverage report
@@ -48,7 +47,7 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
 @Task('Uploads the LCOV coverage report to Coveralls')
-Future<void> coverageUpload() => uploadCoverage('lcov.info');
+Future<void> coverageUpload() async => uploadCoverage(await getFile('lcov.info').readAsString());
 ```
 
 ### The hard way

@@ -28,7 +28,6 @@ Add this to your project's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  grinder: *
   grinder_coveralls: *
 ```
 
