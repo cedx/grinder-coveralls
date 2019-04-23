@@ -9,7 +9,6 @@ import 'package:coverage/coverage.dart';
 import 'package:coveralls/coveralls.dart';
 import 'package:crypto/crypto.dart';
 import 'package:grinder/grinder.dart' hide ProcessException;
-import 'package:path/path.dart' as p;
 
 part 'src/collector.dart';
 part 'src/functions.dart';

@@ -3,6 +3,10 @@ part of '../grinder_coveralls.dart';
 /// Collects the coverage data of a Dart script as [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
 class Collector {
 
+  /// Creates a new collector.
+  Collector({InternetAddress observatoryAddress, this.observatoryPort = 8181}):
+    observatoryAddress = observatoryAddress ?? InternetAddress.loopbackIPv4;
+
   /// The base path to use for resolving the reported paths.
   String basePath;
 
@@ -10,10 +14,10 @@ class Collector {
   Map<String, String> environment;
 
   /// The address of the Observatory profiler.
-  InternetAddress observatoryAddress = InternetAddress.loopbackIPv4;
+  final InternetAddress observatoryAddress;
 
   /// The port of the Observatory profiler.
-  int observatoryPort = 8181;
+  final int observatoryPort;
 
   /// The path to the packages specification file.
   File packagesFile;
@@ -29,32 +33,27 @@ class Collector {
 
   /// Profiles the test files of the specified [source] directory and returns their coverage data as LCOV format.
   ///
-  /// The directory will be scanned, according to the value of the [recurse] parameter, for files matching the specified [pattern].
-  /// If [environment] is provided, its entries will be injected as compile-time constants.
+  /// Uses the specified file [pattern] to match the eligible Dart scripts.
+  /// A [recurse] value indicates whether to process the input directory recursively.
   Future<String> collectFromDirectory(Directory source, {String pattern = '*.dart', bool recurse = false}) async =>
     collectFromFiles(FileSet.fromDir(source, pattern: pattern, recurse: recurse).files);
 
   /// Profiles the specified [source] file and returns its coverage data as LCOV format.
-  ///
-  /// The [arguments] list provides the script arguments.
-  /// If [environment] is provided, its entries will be injected as compile-time constants.
   Future<String> collectFromFile(File source, {List<String> arguments}) async {
-    final hitmap = await _profileScript(source, arguments: arguments);
+    final coverage = await _profileScript(source, arguments: arguments);
     final resolver = Resolver(packagesPath: packagesFile?.path, sdkRoot: sdkDir.path);
-    return LcovFormatter(resolver, basePath: basePath, reportOn: reportOn).format(hitmap);
+    return LcovFormatter(resolver, basePath: basePath, reportOn: reportOn).format(coverage);
   }
 
   /// Profiles the specified source files and returns their coverage data as LCOV format.
-  /// If [environment] is provided, its entries will be injected as compile-time constants.
-  Future<String> collectFromFiles(Iterable<File> sources) async {
-    final hash = md5.convert(utf8.encode(DateTime.now().toIso8601String()));
-    final output = joinFile(Directory.systemTemp, ['grinder_coveralls_$hash.g.dart']);
-    await output.writeAsString(_generateEntryScript(sources));
-    return collectFromFile(output);
-  }
+  Future<String> collectFromFiles(Iterable<File> sources) async => collectFromFile(await _generateEntryScript(sources));
 
-  /// Generates the entry script corresponding to the specified source files.
-  String _generateEntryScript(Iterable<File> sources) {
+  /// Generates an entry script corresponding to the specified source files.
+  /// Returns a reference to the generated file.
+  Future<File> _generateEntryScript(Iterable<File> sources) async {
+    final outputDir = getDir('.dart_tool/grinder_coveralls');
+    await outputDir.create(recursive: true);
+
     final code = Library((library) {
       final statements = <Code>[];
       for (final source in sources) {
@@ -63,7 +62,7 @@ class Collector {
 
         library.directives.add(Directive((directive) => directive
           ..type = DirectiveType.import
-          ..url = p.posix.normalize(source.absolute.path)
+          ..url = Uri.file(source.absolute.path).toString()
           ..as = name
         ));
       }
@@ -74,11 +73,13 @@ class Collector {
       ));
     });
 
-    return code.accept(DartEmitter()).toString();
+    final outputFile = joinFile(outputDir, ['test_${DateTime.now().millisecondsSinceEpoch}.dart']);
+    await outputFile.writeAsString(code.accept(DartEmitter()).toString());
+    return outputFile;
   }
 
   /// Runs the specified [script] and collects its coverage data as hitmap.
-  /// Throws a [ProcessException] if the process exited with a non-zero exit code.
+  /// Throws a [ProcessException] if the process terminated with a non-zero exit code.
   Future<Map> _profileScript(File script, {List<String> arguments}) async {
     final dartArgs = ['--enable-vm-service=$observatoryPort/${observatoryAddress.address}', '--pause-isolates-on-exit'];
     if (environment != null) dartArgs.addAll(environment.entries.map((entry) => '-D${entry.key}=${entry.value}'));
