@@ -55,4 +55,8 @@ Future<String> collectCoverage(FileSystemEntity source, {
 }
 
 /// Uploads the specified code coverage [report] to the Coveralls service.
-Future<void> uploadCoverage(String report, {Configuration configuration, Uri endPoint}) => Client(endPoint).upload(report, configuration);
+Future<void> uploadCoverage(String report, {Configuration configuration, Uri endPoint, bool silent = false}) {
+  final client = Client(endPoint);
+  if (!silent) log('submitting to ${client.endPoint}');
+  return client.upload(report, configuration);
+}
