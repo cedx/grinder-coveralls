@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 /// Tests the features of the [Collector] class.
 void main() => group('Collector', () {
   const entryScript = '.dart_tool/grinder_coveralls/test_';
-  const sampleTest = 'test/fixtures/sample_test.dart';
+  const sampleTest = 'test/fixtures/script.dart';
   final hasSampleTest = stringContainsInOrder([sampleTest, 'end_of_record']);
   var port = 8181 + Random().nextInt(1024);
 
