@@ -22,7 +22,7 @@ Future<String> collectFromFile() =>
 ### Options
 
 #### String **basePath**
-TODO
+The base path to use for resolving the reported paths. This base path will be stripped from the paths of the source files included in the code coverage.
 
 ```dart
 import 'dart:io';
@@ -34,10 +34,21 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 ```
 
 #### Map<String, String> **environment**
-TODO
+The variables that will be injected as compile-time constants. These variables will be accessible using the `fromEnvironment()` method of the classes [`bool`](https://api.dartlang.org/stable/dart-core/bool/bool.fromEnvironment.html), [`int`](https://api.dartlang.org/stable/dart-core/int/int.fromEnvironment.html) and [`String`](https://api.dartlang.org/stable/dart-core/String/String.fromEnvironment.html).
+
+```dart
+import 'package:grinder/grinder.dart';
+import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+
+@Task() Future<String> collectCoverage() =>
+  coveralls.collectCoverage(getDir('test'), environment: {'MY_ENV_VAR': 'FooBar'});
+```
+
+!!! tip
+    These variables are also injected in the environment of the underlying process. This let you also use [`Platform.environment`](https://api.dartlang.org/stable/dart-io/Platform/environment.html) in your test scripts.
 
 #### dynamic **observatoryAddress**
-TODO
+The address used by the [Observatory](https://dart-lang.github.io/observatory) profiler.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -47,8 +58,11 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
   coveralls.collectCoverage(getDir('test'), observatoryAddress: '127.0.0.1');
 ```
 
+!!! tip
+    The address can be provided as a `String` or as an [`InternetAddress`](https://api.dartlang.org/stable/dart-io/InternetAddress-class.html) instance.
+
 #### int **observatoryPort** = `8181`
-TODO
+The port used by the [Observatory](https://dart-lang.github.io/observatory) profiler.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -59,7 +73,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 ```
 
 #### dynamic **packagesFile**
-TODO
+The path to the `.packages` specification file. This file is used by the LCOV formatter to resolve `package:` imports.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -69,8 +83,11 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
   coveralls.collectCoverage(getDir('test'), packagesFile: '.packages');
 ```
 
+!!! tip
+    The path can be provided as a `String` or as a [`File`](https://api.dartlang.org/stable/dart-io/File-class.html) instance.
+
 #### String **pattern** = `"*_test.dart"`
-TODO
+When the source input is a directory, the file pattern used to match the eligible Dart scripts.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -81,7 +98,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 ```
 
 #### bool **recurse** = `true`
-TODO
+When the source input is a directory, the value indicating whether to process the directory recursively.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -92,7 +109,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 ```
 
 #### List<String> **reportOn**
-TODO
+The prefixes used to limit the files included in the coverage report output. All file paths not containing theses prefixes will be excluded from the code coverage.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -103,7 +120,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 ```
 
 #### dynamic **saveAs**
-TODO
+The path to a destination file. If provided, the coverage report output will be written to the file at the given path.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -113,8 +130,11 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
   coveralls.collectCoverage(getDir('test'), saveAs: 'lcov.info');
 ```
 
+!!! tip
+    The path can be provided as a `String` or as a [`File`](https://api.dartlang.org/stable/dart-io/File-class.html) instance.
+
 #### bool **silent** = `false`
-TODO
+By default, the `collectCoverage()` function prints to the console the standard output of the underling process. You can disable this output by setting the `silent` option to `true`.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -125,7 +145,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 ```
 
 #### Duration **timeout**
-TODO
+The maximum duration that must not be exceeded before a `TimeoutException` is thrown.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -143,7 +163,7 @@ The report can be in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format
 ### Options
 
 #### Configuration **configuration**
-TODO
+A set of key-value pairs used to customize the report sent to the [Coveralls](https://coveralls.io) service.
 
 ```dart
 import 'package:coveralls/coveralls.dart' show Configuration;
@@ -160,8 +180,11 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 }
 ```
 
+!!! tip
+    See the source code of the [`coveralls` package](https://pub.dartlang.org/packages/coveralls) for the full list of supported parameters.
+
 #### Uri **endPoint**
-TODO
+The base URI of the API endpoint of the [Coveralls](https://coveralls.io) service.
 
 ```dart
 import 'package:grinder/grinder.dart';
