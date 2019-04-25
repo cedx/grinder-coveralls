@@ -50,7 +50,12 @@ Future<String> collectCoverage(FileSystemEntity source, {
     ? await collector.collectFromFiles(FileSet.fromDir(source, pattern: pattern, recurse: recurse).files)
     : await collector.collectFromFile(source);
 
-  if (saveAs != null) await FilePath(saveAs).asFile.writeAsString(coverage);
+  if (saveAs != null) {
+    final output = FilePath(saveAs).asFile;
+    await output.parent.create(recursive: true);
+    await output.writeAsString(coverage);
+  }
+
   return coverage;
 }
 
