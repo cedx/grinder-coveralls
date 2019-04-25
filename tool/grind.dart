@@ -7,7 +7,7 @@ Future<void> main(List<String> args) => grind(args);
 @Task('Deletes all generated files and reset any saved state')
 void clean() {
   defaultClean();
-  ['.dart_tool', 'doc/api', webDir.path].map(getDir).forEach(delete);
+  ['.dart_tool', 'doc/api', 'var/test', webDir.path].map(getDir).forEach(delete);
   ['var/lcov.info'].map(getFile).forEach(delete);
 }
 

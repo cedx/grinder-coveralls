@@ -6,16 +6,16 @@ import 'package:test/test.dart';
 
 /// Tests the features of the [Collector] class.
 void main() => group('Collector', () {
-  const endOfRecord = 'end_of_record';
   const entryScript = '.dart_tool/grinder_coveralls/test_';
   const sampleTest = 'test/fixtures/sample_test.dart';
+  final hasSampleTest = stringContainsInOrder([sampleTest, 'end_of_record']);
   var port = 8181 + Random().nextInt(1024);
 
   group('.basePath', () {
     test('should change the file paths of the code coverage', () async {
       final collector = Collector(observatoryPort: port++)..basePath = joinDir(Directory.current, ['test', 'fixtures']).path;
       final coverage = await collector.collectFromDirectory(getDir('test/fixtures'));
-      expect(coverage, stringContainsInOrder(['SF:${fileName(getFile(sampleTest))}', endOfRecord]));
+      expect(coverage, stringContainsInOrder(['SF:${fileName(getFile(sampleTest))}', 'end_of_record']));
     });
   });
 
@@ -23,32 +23,28 @@ void main() => group('Collector', () {
     test('should limit the files included in the code coverage', () async {
       final collector = Collector(observatoryPort: port++)..reportOn = ['test'];
       final coverage = await collector.collectFromDirectory(getDir('test/fixtures'));
-      expect(coverage, stringContainsInOrder([sampleTest, endOfRecord]));
-      expect(coverage, isNot(contains(entryScript)));
+      expect(coverage, allOf(hasSampleTest, isNot(contains(entryScript))));
     });
   });
 
   group('.collectDirectory()', () {
     test('should return the code coverage of the sample test directory', () async {
       final coverage = await Collector(observatoryPort: port++).collectFromDirectory(getDir('test/fixtures'));
-      expect(coverage, stringContainsInOrder([sampleTest, endOfRecord]));
-      expect(coverage, contains(entryScript));
+      expect(coverage, allOf(hasSampleTest, contains(entryScript)));
     });
   });
 
   group('.collectFile()', () {
     test('should return the code coverage of the sample test file', () async {
       final coverage = await Collector(observatoryPort: port++).collectFromFile(getFile(sampleTest));
-      expect(coverage, stringContainsInOrder([sampleTest, endOfRecord]));
-      expect(coverage, isNot(contains(entryScript)));
+      expect(coverage, allOf(hasSampleTest, isNot(contains(entryScript))));
     });
   });
 
   group('.collectFiles()', () {
     test('should return the code coverage of the sample test files', () async {
       final coverage = await Collector(observatoryPort: port++).collectFromFiles([getFile(sampleTest)]);
-      expect(coverage, stringContainsInOrder([sampleTest, endOfRecord]));
-      expect(coverage, contains(entryScript));
+      expect(coverage, allOf(hasSampleTest, contains(entryScript)));
     });
   });
 });
