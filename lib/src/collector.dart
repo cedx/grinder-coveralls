@@ -79,7 +79,9 @@ class Collector {
   }
 
   /// Runs the specified [script] and collects its coverage data as hitmap.
+  ///
   /// Throws a [ProcessException] if the process terminated with a non-zero exit code.
+  /// Throws a [TimeoutException] if the process does not terminate before the [timeout] has passed.
   Future<Map> _profileScript(File script, {List<String> arguments}) async {
     final dartArgs = ['--enable-vm-service=$observatoryPort/${observatoryAddress.address}', '--pause-isolates-on-exit'];
     if (environment != null) dartArgs.addAll(environment.entries.map((entry) => '-D${entry.key}=${entry.value}'));
