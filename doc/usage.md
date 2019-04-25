@@ -59,7 +59,8 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 ```
 
 !!! tip
-    The address can be provided as a `String` or as an [`InternetAddress`](https://api.dartlang.org/stable/dart-io/InternetAddress-class.html) instance.
+    The address can be provided as a `String` or as an [`InternetAddress`](https://api.dartlang.org/stable/dart-io/InternetAddress-class.html) instance.  
+    Defaults to [`InternetAddress.loopbackIPv4`](https://api.dartlang.org/stable/dart-io/InternetAddress/loopbackIPv4.html).
 
 #### int **observatoryPort** = `8181`
 The port used by the [Observatory](https://dart-lang.github.io/observatory) profiler.
@@ -94,7 +95,7 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 
 @Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), pattern: '*_test.dart');
+  coveralls.collectCoverage(getDir('test'), pattern: '*.dart');
 ```
 
 #### bool **recurse** = `true`
