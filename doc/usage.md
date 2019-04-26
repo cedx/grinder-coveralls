@@ -44,9 +44,6 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
   coveralls.collectCoverage(getDir('test'), environment: {'MY_ENV_VAR': 'FooBar'});
 ```
 
-!!! tip
-    These variables are also injected into the environment of the underlying process. This let you also use [`Platform.environment`](https://api.dartlang.org/stable/dart-io/Platform/environment.html) in your test scripts.
-
 #### dynamic **observatoryAddress**
 The address used by the [Observatory](https://dart-lang.github.io/observatory) profiler.
 

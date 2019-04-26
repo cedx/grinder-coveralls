@@ -89,7 +89,7 @@ class Collector {
     if (arguments != null) dartArgs.addAll(arguments);
 
     final serviceUriCompleter = Completer<Uri>();
-    final process = await Process.start('dart', dartArgs, environment: environment);
+    final process = await Process.start('dart', dartArgs);
     process.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen((line) {
       if (!silent) log(line);
       if (!serviceUriCompleter.isCompleted) {
