@@ -83,10 +83,14 @@ class Collector {
   /// Throws a [ProcessException] if the process terminated with a non-zero exit code.
   /// Throws a [TimeoutException] if the process does not terminate before the [timeout] has passed.
   Future<Map> _profileScript(File script, {List<String> arguments}) async {
-    final dartArgs = ['--enable-asserts', '--enable-vm-service=$observatoryPort/${observatoryAddress.address}', '--pause-isolates-on-exit'];
-    if (environment != null) dartArgs.addAll(environment.entries.map((entry) => '-D${entry.key}=${entry.value}'));
-    dartArgs.add(script.path);
-    if (arguments != null) dartArgs.addAll(arguments);
+    final dartArgs = [
+      '--enable-asserts',
+      '--enable-vm-service=$observatoryPort/${observatoryAddress.address}',
+      '--pause-isolates-on-exit',
+      if (environment != null) for (final entry in environment.entries) '-D${entry.key}=${entry.value}',
+      script.path,
+      ...?arguments
+    ];
 
     final serviceUriCompleter = Completer<Uri>();
     final process = await Process.start('dart', dartArgs);
