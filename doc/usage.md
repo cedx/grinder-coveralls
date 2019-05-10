@@ -1,7 +1,7 @@
 # Usage
 If you haven't used [Grinder](https://github.com/google/grinder.dart) before, be sure to check out the [related documentation](https://google.github.io/grinder.dart), as it explains how to create a `grind.dart` file and to define project tasks. Once you're familiar with that process, you may install this package.
 
-The package provides two functions, `collectCoverage()` and `uploadCoverage()`, that let you collect the code coverage of one or several [Dart](https://www.dartlang.org) scripts, and upload the resulting [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) report to the [Coveralls](https://coveralls.io) service.
+The package provides two functions, `collectCoverage()` and `uploadCoverage()`, that let you collect the code coverage of one or several [Dart](https://dart.dev) scripts, and upload the resulting [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) report to the [Coveralls](https://coveralls.io) service.
     
 ## Future&lt;String&gt; **collectCoverage**(FileSystemEntity source)
 Runs the specified source script, or source directory containing test files, and returns the collected coverage data as LCOV format.
@@ -179,7 +179,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 ```
 
 !!! tip
-    See the source code of the [`coveralls` package](https://pub.dartlang.org/packages/coveralls) for the full list of supported parameters.
+    See the source code of the [`coveralls` package](https://pub.dev/packages/coveralls) for the full list of supported parameters.
 
 #### Uri **endPoint**
 The base URI of the API endpoint of the [Coveralls](https://coveralls.io) service.
