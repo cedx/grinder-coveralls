@@ -1,5 +1,5 @@
 name: grinder_coveralls
-version: 0.2.0
+version: 1.0.0
 
 author: Cédric Belin <cedric@belin.io>
 description: Grinder plug-in collecting your code coverage as LCOV and uploading it to the Coveralls service.
@@ -9,7 +9,7 @@ issue_tracker: https://github.com/cedx/grinder-coveralls/issues
 repository: https://github.com/cedx/grinder-coveralls
 
 environment:
-  sdk: '>=2.2.0 <3.0.0'
+  sdk: '>=2.3.0 <3.0.0'
 
 dependencies:
   code_builder: ^3.2.0
