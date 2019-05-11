@@ -52,7 +52,7 @@ Future<String> collectCoverage(FileSystemEntity source, {
 
   if (saveAs != null) {
     final output = FilePath(saveAs).asFile;
-    await output.parent.create(recursive: true);
+    await output.create(recursive: true);
     await output.writeAsString(coverage);
   }
 
