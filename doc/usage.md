@@ -132,7 +132,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
     The path can be provided as a `String` or as a [`File`](https://api.dartlang.org/stable/dart-io/File-class.html) instance.
 
 #### bool **silent** = `false`
-By default, the `collectCoverage()` function prints to the console the standard output of the underling process. You can disable this output by setting the `silent` option to `true`.
+By default, the `collectCoverage()` function prints to the console the standard output of the underlying process. You can disable this output by setting the `silent` option to `true`.
 
 ```dart
 import 'package:grinder/grinder.dart';
