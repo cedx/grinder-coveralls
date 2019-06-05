@@ -19,4 +19,4 @@ dependencies:
   grinder: ^0.8.3
 
 dev_dependencies:
-  test: ^1.6.3
+  test: ^1.6.4
