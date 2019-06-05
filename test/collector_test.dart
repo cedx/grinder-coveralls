@@ -2,12 +2,13 @@ import 'dart:io';
 import 'dart:math';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
+import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 /// Tests the features of the [Collector] class.
 void main() => group('Collector', () {
-  const entryScript = '.dart_tool/grinder_coveralls/test_';
-  const sampleTest = 'test/fixtures/script.dart';
+  final entryScript = p.normalize('.dart_tool/grinder_coveralls/test_');
+  final sampleTest = p.normalize('test/fixtures/script.dart');
   final hasSampleTest = stringContainsInOrder([sampleTest, 'end_of_record']);
   var port = 8181 + Random().nextInt(1024);
 
@@ -15,7 +16,7 @@ void main() => group('Collector', () {
     test('should change the file paths of the code coverage', () async {
       final collector = Collector(observatoryPort: port++)..basePath = joinDir(Directory.current, ['test', 'fixtures']).path;
       final coverage = await collector.collectFromDirectory(getDir('test/fixtures'));
-      expect(coverage, stringContainsInOrder(['SF:${fileName(getFile(sampleTest))}', 'end_of_record']));
+      expect(coverage, stringContainsInOrder(['SF:${p.basename(sampleTest)}', 'end_of_record']));
     });
   });
 

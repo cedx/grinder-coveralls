@@ -1,12 +1,13 @@
 import 'dart:math';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
+import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 /// Tests the features of the functions.
 void main() => group('collectCoverage()', () {
-  const entryScript = '.dart_tool/grinder_coveralls/test_';
-  final hasSampleTest = stringContainsInOrder(['test/fixtures/script.dart', 'end_of_record']);
+  final entryScript = p.normalize('.dart_tool/grinder_coveralls/test_');
+  final hasSampleTest = stringContainsInOrder([p.normalize('test/fixtures/script.dart'), 'end_of_record']);
   var port = 8181 + Random().nextInt(1024);
 
   test('should return the code coverage of the sample test directory', () async {
