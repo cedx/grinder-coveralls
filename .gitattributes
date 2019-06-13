@@ -3,7 +3,6 @@
 .* text
 *.dart text
 *.http text
-*.info text
 *.md text
 *.txt text
 *.yaml text
