@@ -104,7 +104,7 @@ class Collector {
     });
 
     Map<String, dynamic> report;
-    try { report = await collect(await serviceUriCompleter.future, true, true, false, timeout: timeout); }
+    try { report = await collect(await serviceUriCompleter.future, true, true, false, null, timeout: timeout); }
     finally { await process.stderr.drain(); }
 
     final exitCode = await process.exitCode;
