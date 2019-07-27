@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [1.1.1](https://github.com/cedx/grinder-coveralls/compare/v1.1.0...v1.1.1)
+- Fixed the [GitHub issue #2](https://github.com/cedx/grinder-coveralls/issues/2): a breaking change was introduced in the `coverage` package.
+- Updated the package dependencies.
+
 ## Version [1.1.0](https://github.com/cedx/grinder-coveralls/compare/v1.0.0...v1.1.0)
 - Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
 - Updated the package dependencies.
