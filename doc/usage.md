@@ -156,7 +156,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
 ## Future&lt;void&gt; **uploadCoverage**(String report, {Configuration configuration, Uri endPoint})
 Uploads the specified coverage report to the [Coveralls](https://coveralls.io) service.
 
-The report can be in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format, the de facto standard, or in [Clover](https://www.atlassian.com/software/clover) format, a common format produced by [Java](https://www.java.com) and [PHP](https://secure.php.net) test frameworks
+The report can be in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format, the de facto standard, or in [Clover](https://www.atlassian.com/software/clover) format, a common format produced by [Java](https://www.java.com) and [PHP](https://secure.php.net) test frameworks.
 
 ### Options
 
