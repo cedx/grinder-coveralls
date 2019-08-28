@@ -2,12 +2,6 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "command": "grind build",
-      "label": "grinder : build",
-      "problemMatcher": [],
-      "type": "shell"
-    },
-    {
       "command": "grind clean",
       "label": "grinder : clean",
       "problemMatcher": [],
