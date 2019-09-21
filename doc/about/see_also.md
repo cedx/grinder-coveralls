@@ -6,5 +6,5 @@
 - [Submit an issue](https://github.com/cedx/grinder-coveralls/issues)
 
 ## Testing
-- [Continuous integration](https://travis-ci.com/cedx/grinder-coveralls)
+- [Continuous integration](https://github.com/cedx/grinder-coveralls/actions)
 - [Code coverage](https://coveralls.io/github/cedx/grinder-coveralls)
