@@ -14,9 +14,11 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
   collectCoverage('test/**_test.dart');
 ```
 
+The file patterns use the same syntax as the [`glob` package](https://pub.dev/packages/glob).
+
 !!! tip
     You can provide several file patterns to the `collectCoverage()` function:
-    the `patterns` parameter can be a `String` (a single pattern) or a `List<String>` (multiple patterns).
+    the `patterns` parameter can be a `String` (single pattern) or a `List<String>` (multiple patterns).
 
 ### Options
 
