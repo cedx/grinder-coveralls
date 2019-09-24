@@ -7,7 +7,7 @@ class Collector {
   Collector({InternetAddress observatoryAddress, this.observatoryPort = 8181}):
     observatoryAddress = observatoryAddress ?? InternetAddress.loopbackIPv4;
 
-  /// The base path to use for resolving the reported paths.
+  /// The absolute base path to use for resolving the reported paths.
   String basePath;
 
   /// The variables that will be injected as compile-time constants.
@@ -28,25 +28,27 @@ class Collector {
   /// Value indicating whether to silent the collector output.
   bool silent = true;
 
-  /// The maximum duration that must not be exceeded before a `TimeoutException` is thrown.
+  /// The maximum duration that must not be exceeded before a [TimeoutException] is thrown.
   Duration timeout;
 
-  /// Profiles the test files of the specified [source] directory and returns their coverage data as LCOV format.
+  /// Profiles the test files corresponding to the specified [patterns], and returns their coverage data as LCOV format.
+  /// Throws a [FileSystemException] if no test files were found.
   ///
-  /// Uses the specified file [pattern] to match the eligible Dart scripts.
-  /// A [recurse] value indicates whether to process the input directory recursively.
-  Future<String> collectFromDirectory(Directory source, {String pattern = '*.dart', bool recurse = false}) async =>
-    collectFromFiles(FileSet.fromDir(source, pattern: pattern, recurse: recurse).files);
+  /// The file patterns are resolved against a given [root] path, which defaults to the current working directory.
+  /// Additional [arguments] can be passed to the Dart executable that runs the tests.
+  Future<String> run(Iterable<Glob> patterns, {List<String> arguments, Directory root}) async {
+    root ??= Directory.current;
 
-  /// Profiles the specified [source] file and returns its coverage data as LCOV format.
-  Future<String> collectFromFile(File source, {List<String> arguments}) async {
-    final coverage = await _profileScript(source, arguments: arguments);
+    final entities = <FileSystemEntity>[];
+    for (final pattern in patterns) entities.addAll(await pattern.list(root: root.path).toList());
+    final testFiles = entities.whereType<File>().toList();
+    if (testFiles.isEmpty) throw const FileSystemException('No test files were found.');
+
+    final entryScript = testFiles.length > 1 ? await _generateEntryScript(testFiles) : testFiles.first;
+    final coverage = await _profileScript(entryScript, arguments: arguments);
     final resolver = Resolver(packagesPath: packagesFile?.path, sdkRoot: sdkDir.path);
     return LcovFormatter(resolver, basePath: basePath, reportOn: reportOn).format(coverage);
   }
-
-  /// Profiles the specified source files and returns their coverage data as LCOV format.
-  Future<String> collectFromFiles(Iterable<File> sources) async => collectFromFile(await _generateEntryScript(sources));
 
   /// Generates an entry script corresponding to the specified source files.
   /// Returns a reference to the generated file.
