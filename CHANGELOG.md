@@ -1,5 +1,12 @@
 # Changelog
 
+## Version [2.0.0](https://github.com/cedx/grinder-coveralls/compare/v1.1.1...v2.0.0)
+- Breaking change: replaced the `collectFromDirectory()`, `collectFromFile()` and `collectFromFiles()` methods from the `Collector` class by the `run()` one.
+- Breaking change: using [`glob`](https://pub.dev/packages/glob) patterns instead of `FileSystemEntity` parameters for providing the list of files to be tested.
+- Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
+- Replaced [Travis CI](https://travis-ci.com) by [GitHub Actions](https://github.com/features/actions) for the continuous integration.
+- Updated the package dependencies.
+
 ## Version [1.1.1](https://github.com/cedx/grinder-coveralls/compare/v1.1.0...v1.1.1)
 - Fixed the [issue #2](https://github.com/cedx/grinder-coveralls/issues/2): a breaking change was introduced in the `coverage` package.
 - Updated the package dependencies.
