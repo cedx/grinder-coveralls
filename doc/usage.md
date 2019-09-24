@@ -3,34 +3,34 @@ If you haven't used [Grinder](https://github.com/google/grinder.dart) before, be
 
 The package provides two functions, `collectCoverage()` and `uploadCoverage()`, that let you collect the code coverage of one or several [Dart](https://dart.dev) scripts, and upload the resulting [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) report to the [Coveralls](https://coveralls.io) service.
     
-## Future&lt;String&gt; **collectCoverage**(FileSystemEntity source)
-Runs the specified source script, or source directory containing test files, and returns the collected coverage data as LCOV format.
+## Future&lt;String&gt; **collectCoverage**(dynamic patterns)
+Runs the test scripts corresponding to the specified file patterns, and returns the collected coverage data as LCOV format.
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
 @Task('Collects the code coverage of Dart scripts from a given directory')
 Future<String> collectFromDirectory() =>
-  coveralls.collectCoverage(getDir('path/to/src'));
+  collectCoverage('test/**_test.dart');
 
 @Task('Collects the code coverage of a single Dart script')
 Future<String> collectFromFile() =>
-  coveralls.collectCoverage(getFile('path/to/src/script.dart'));
+  collectCoverage(getFile('path/to/src/script.dart'));
 ```
 
 ### Options
 
 #### String **basePath**
-The base path to use for resolving the reported paths. This base path will be stripped from the paths of the source files included in the code coverage.
+The absolute base path to use for resolving the reported paths. This base path will be stripped from the paths of the source files included in the code coverage.
 
 ```dart
 import 'dart:io';
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), basePath: Directory.current.path);
+@Task() Future<String> codeCoverage() =>
+  collectCoverage('test/**_test.dart', basePath: Directory.current.path);
 ```
 
 #### Map<String, String> **environment**
@@ -38,10 +38,10 @@ The variables that will be injected as compile-time constants. These variables w
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), environment: {'MY_ENV_VAR': 'FooBar'});
+@Task() Future<String> codeCoverage() =>
+  collectCoverage('test/**_test.dart', environment: {'MY_ENV_VAR': 'FooBar'});
 ```
 
 #### dynamic **observatoryAddress**
@@ -49,10 +49,10 @@ The address used by the [Observatory](https://dart-lang.github.io/observatory) p
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), observatoryAddress: '127.0.0.1');
+@Task() Future<String> codeCoverage() =>
+  collectCoverage('test/**_test.dart', observatoryAddress: '127.0.0.1');
 ```
 
 !!! tip
@@ -64,10 +64,10 @@ The port used by the [Observatory](https://dart-lang.github.io/observatory) prof
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), observatoryPort: 8181);
+@Task() Future<String> codeCoverage() =>
+  collectCoverage('test/**_test.dart', observatoryPort: 8181);
 ```
 
 #### dynamic **packagesFile**
@@ -75,10 +75,10 @@ The path to the `.packages` specification file. This file is used by the LCOV fo
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), packagesFile: '.packages');
+@Task() Future<String> codeCoverage() =>
+  collectCoverage('test/**_test.dart', packagesFile: '.packages');
 ```
 
 !!! tip
@@ -89,10 +89,10 @@ When the source input is a directory, the file pattern used to match the eligibl
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), pattern: '*.dart');
+@Task() Future<String> codeCoverage() =>
+  collectCoverage('test/**_test.dart', pattern: '*.dart');
 ```
 
 #### bool **recurse** = `true`
@@ -100,10 +100,10 @@ When the source input is a directory, the value indicating whether to process th
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), recurse: false);
+@Task() Future<String> codeCoverage() =>
+  collectCoverage('test/**_test.dart', recurse: false);
 ```
 
 #### List<String> **reportOn**
@@ -111,10 +111,10 @@ The prefixes used to limit the files included in the coverage report output. All
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), reportOn: [libDir.path]);
+@Task() Future<String> codeCoverage() =>
+  collectCoverage('test/**_test.dart', reportOn: [libDir.path]);
 ```
 
 #### dynamic **saveAs**
@@ -122,10 +122,10 @@ The path to a destination file. If provided, the coverage report output will be 
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
 @Task() Future<void> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), saveAs: 'lcov.info');
+  collectCoverage('test/**_test.dart', saveAs: 'lcov.info');
 ```
 
 !!! tip
@@ -136,10 +136,10 @@ By default, the `collectCoverage()` function prints to the console the standard 
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), silent: true);
+@Task() Future<String> codeCoverage() =>
+  collectCoverage('test/**_test.dart', silent: true);
 ```
 
 #### Duration **timeout**
@@ -147,10 +147,10 @@ The maximum duration that must not be exceeded before a `TimeoutException` is th
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> collectCoverage() =>
-  coveralls.collectCoverage(getDir('test'), timeout: Duration(minutes: 3));
+@Task() Future<String> codeCoverage() =>
+  collectCoverage('test/**_test.dart', timeout: Duration(minutes: 3));
 ```
 
 ## Future&lt;void&gt; **uploadCoverage**(String report, {Configuration configuration, Uri endPoint})
@@ -166,15 +166,15 @@ A set of key-value pairs used to customize the report sent to the [Coveralls](ht
 ```dart
 import 'package:coveralls/coveralls.dart' show Configuration;
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<void> uploadCoverage() async {
+@Task() Future<void> sendCoverage() async {
   final config = await Configuration.loadDefaults();
   config['repo_token'] = 'A7BIfg9TXgImpHpi8y1kwH7Ke3RABYVP4';
   config['service_name'] = 'My Own CI Service';
   
   final coverage = await getFile('lcov.info').readAsString();
-  return coveralls.uploadCoverage(coverage, configuration: config);
+  return uploadCoverage(coverage, configuration: config);
 }
 ```
 
@@ -186,10 +186,10 @@ The base URI of the API endpoint of the [Coveralls](https://coveralls.io) servic
 
 ```dart
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart' as coveralls;
+import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<void> uploadCoverage() async {
+@Task() Future<void> sendCoverage() async {
   final coverage = await getFile('lcov.info').readAsString();
-  return coveralls.uploadCoverage(coverage, endPoint: Uri.https('coveralls.io', '/api/v1/'));
+  return uploadCoverage(coverage, endPoint: Uri.https('coveralls.io', '/api/v1/'));
 }
 ```
