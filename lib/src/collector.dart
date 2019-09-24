@@ -31,7 +31,7 @@ class Collector {
   /// The maximum duration that must not be exceeded before a [TimeoutException] is thrown.
   Duration timeout;
 
-  /// Profiles the test files corresponding to the specified [patterns], and returns their coverage data as LCOV format.
+  /// Profiles the test scripts corresponding to the specified file [patterns], and returns their coverage data as LCOV format.
   /// Throws a [FileSystemException] if no test files were found.
   ///
   /// The file patterns are resolved against a given [root] path, which defaults to the current working directory.
