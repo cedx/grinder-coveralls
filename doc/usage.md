@@ -10,14 +10,13 @@ Runs the test scripts corresponding to the specified file patterns, and returns 
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task('Collects the code coverage of Dart scripts from a given directory')
-Future<String> collectFromDirectory() =>
+@Task() Future<String> collectCodeCoverage() =>
   collectCoverage('test/**_test.dart');
-
-@Task('Collects the code coverage of a single Dart script')
-Future<String> collectFromFile() =>
-  collectCoverage(getFile('path/to/src/script.dart'));
 ```
+
+!!! tip
+    You can provide several file patterns to the `collectCoverage()` function:
+    the `patterns` parameter can be a `String` (a single pattern) or a `List<String>` (multiple patterns).
 
 ### Options
 
@@ -29,18 +28,18 @@ import 'dart:io';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> codeCoverage() =>
+@Task() Future<String> collectCodeCoverage() =>
   collectCoverage('test/**_test.dart', basePath: Directory.current.path);
 ```
 
-#### Map<String, String> **environment**
-The variables that will be injected as compile-time constants. These variables will be accessible using the `fromEnvironment()` method of the classes [`bool`](https://api.dartlang.org/stable/dart-core/bool/bool.fromEnvironment.html), [`int`](https://api.dartlang.org/stable/dart-core/int/int.fromEnvironment.html) and [`String`](https://api.dartlang.org/stable/dart-core/String/String.fromEnvironment.html).
+#### Map&lt;String, String&gt; **environment**
+The variables that will be injected as compile-time constants. These variables will be accessible using the `fromEnvironment()` method of the [`bool`](https://api.dartlang.org/stable/dart-core/bool/bool.fromEnvironment.html), [`int`](https://api.dartlang.org/stable/dart-core/int/int.fromEnvironment.html) and [`String`](https://api.dartlang.org/stable/dart-core/String/String.fromEnvironment.html) classes.
 
 ```dart
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> codeCoverage() =>
+@Task() Future<String> collectCodeCoverage() =>
   collectCoverage('test/**_test.dart', environment: {'MY_ENV_VAR': 'FooBar'});
 ```
 
@@ -51,7 +50,7 @@ The address used by the [Observatory](https://dart-lang.github.io/observatory) p
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> codeCoverage() =>
+@Task() Future<String> collectCodeCoverage() =>
   collectCoverage('test/**_test.dart', observatoryAddress: '127.0.0.1');
 ```
 
@@ -66,7 +65,7 @@ The port used by the [Observatory](https://dart-lang.github.io/observatory) prof
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> codeCoverage() =>
+@Task() Future<String> collectCodeCoverage() =>
   collectCoverage('test/**_test.dart', observatoryPort: 8181);
 ```
 
@@ -77,43 +76,21 @@ The path to the `.packages` specification file. This file is used by the LCOV fo
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> codeCoverage() =>
+@Task() Future<String> collectCodeCoverage() =>
   collectCoverage('test/**_test.dart', packagesFile: '.packages');
 ```
 
 !!! tip
     The path can be provided as a `String` or as a [`File`](https://api.dartlang.org/stable/dart-io/File-class.html) instance.
 
-#### String **pattern** = `"*_test.dart"`
-When the source input is a directory, the file pattern used to match the eligible Dart scripts.
-
-```dart
-import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart';
-
-@Task() Future<String> codeCoverage() =>
-  collectCoverage('test/**_test.dart', pattern: '*.dart');
-```
-
-#### bool **recurse** = `true`
-When the source input is a directory, the value indicating whether to process the directory recursively.
-
-```dart
-import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart';
-
-@Task() Future<String> codeCoverage() =>
-  collectCoverage('test/**_test.dart', recurse: false);
-```
-
-#### List<String> **reportOn**
+#### List&lt;String&gt; **reportOn**
 The prefixes used to limit the files included in the coverage report output. All file paths not containing theses prefixes will be excluded from the code coverage.
 
 ```dart
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> codeCoverage() =>
+@Task() Future<String> collectCodeCoverage() =>
   collectCoverage('test/**_test.dart', reportOn: [libDir.path]);
 ```
 
@@ -138,7 +115,7 @@ By default, the `collectCoverage()` function prints to the console the standard 
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> codeCoverage() =>
+@Task() Future<String> collectCodeCoverage() =>
   collectCoverage('test/**_test.dart', silent: true);
 ```
 
@@ -149,7 +126,7 @@ The maximum duration that must not be exceeded before a `TimeoutException` is th
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<String> codeCoverage() =>
+@Task() Future<String> collectCodeCoverage() =>
   collectCoverage('test/**_test.dart', timeout: Duration(minutes: 3));
 ```
 
@@ -168,7 +145,7 @@ import 'package:coveralls/coveralls.dart' show Configuration;
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<void> sendCoverage() async {
+@Task() Future<void> uploadCoverageReport() async {
   final config = await Configuration.loadDefaults();
   config['repo_token'] = 'A7BIfg9TXgImpHpi8y1kwH7Ke3RABYVP4';
   config['service_name'] = 'My Own CI Service';
@@ -188,8 +165,21 @@ The base URI of the API endpoint of the [Coveralls](https://coveralls.io) servic
 import 'package:grinder/grinder.dart';
 import 'package:grinder_coveralls/grinder_coveralls.dart';
 
-@Task() Future<void> sendCoverage() async {
+@Task() Future<void> uploadCoverageReport() async {
   final coverage = await getFile('lcov.info').readAsString();
   return uploadCoverage(coverage, endPoint: Uri.https('coveralls.io', '/api/v1/'));
+}
+```
+
+#### bool **silent** = `false`
+By default, the `uploadCoverage()` function prints to the console a submit message. You can disable this output by setting the `silent` option to `true`.
+
+```dart
+import 'package:grinder/grinder.dart';
+import 'package:grinder_coveralls/grinder_coveralls.dart';
+
+@Task() Future<void> uploadCoverageReport() async {
+  final coverage = await getFile('lcov.info').readAsString();
+  uploadCoverage(coverage, silent: true);
 }
 ```
