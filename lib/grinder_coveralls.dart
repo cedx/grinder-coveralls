@@ -49,7 +49,7 @@ Future<String> collectCoverage(patterns, {
   if (saveAs != null) {
     final output = FilePath(saveAs).asFile;
     await output.create(recursive: true);
-    await output.writeAsString(coverage);
+    await output.writeAsString(coverage, flush: true);
   }
 
   return coverage;

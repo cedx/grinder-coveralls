@@ -76,7 +76,7 @@ class Collector {
     });
 
     final outputFile = joinFile(outputDir, ['test_${DateTime.now().millisecondsSinceEpoch}.dart']);
-    await outputFile.writeAsString(code.accept(DartEmitter()).toString());
+    await outputFile.writeAsString(code.accept(DartEmitter()).toString(), flush: true);
     return outputFile;
   }
 
