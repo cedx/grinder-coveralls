@@ -26,6 +26,12 @@
       "type": "shell"
     },
     {
+      "command": "grind publish",
+      "label": "grinder: publish",
+      "problemMatcher": [],
+      "type": "shell"
+    },
+   {
       "command": "grind test",
       "group": {"isDefault": true, "kind": "build"},
       "label": "grinder: test",
