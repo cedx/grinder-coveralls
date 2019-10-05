@@ -35,7 +35,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 ```
 
 #### Map&lt;String, String&gt; **environment**
-The variables that will be injected as compile-time constants. These variables will be accessible using the `fromEnvironment()` method of the [`bool`](https://api.dartlang.org/stable/dart-core/bool/bool.fromEnvironment.html), [`int`](https://api.dartlang.org/stable/dart-core/int/int.fromEnvironment.html) and [`String`](https://api.dartlang.org/stable/dart-core/String/String.fromEnvironment.html) classes.
+The variables that will be injected as compile-time constants. These variables will be accessible using the `fromEnvironment()` method of the [`bool`](https://api.dart.dev/stable/dart-core/bool/bool.fromEnvironment.html), [`int`](https://api.dart.dev/stable/dart-core/int/int.fromEnvironment.html) and [`String`](https://api.dart.dev/stable/dart-core/String/String.fromEnvironment.html) classes.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -57,8 +57,8 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 ```
 
 !!! tip
-    The address can be provided as a `String` or as an [`InternetAddress`](https://api.dartlang.org/stable/dart-io/InternetAddress-class.html) instance.  
-    Defaults to [`InternetAddress.loopbackIPv4`](https://api.dartlang.org/stable/dart-io/InternetAddress/loopbackIPv4.html).
+    The address can be provided as a `String` or as an [`InternetAddress`](https://api.dart.dev/stable/dart-io/InternetAddress-class.html) instance.  
+    Defaults to [`InternetAddress.loopbackIPv4`](https://api.dart.dev/stable/dart-io/InternetAddress/loopbackIPv4.html).
 
 #### int **observatoryPort** = `8181`
 The port used by the [Observatory](https://dart-lang.github.io/observatory) profiler.
@@ -83,7 +83,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 ```
 
 !!! tip
-    The path can be provided as a `String` or as a [`File`](https://api.dartlang.org/stable/dart-io/File-class.html) instance.
+    The path can be provided as a `String` or as a [`File`](https://api.dart.dev/stable/dart-io/File-class.html) instance.
 
 #### List&lt;String&gt; **reportOn**
 The prefixes used to limit the files included in the coverage report output. All file paths not containing theses prefixes will be excluded from the code coverage.
@@ -108,7 +108,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 ```
 
 !!! tip
-    The path can be provided as a `String` or as a [`File`](https://api.dartlang.org/stable/dart-io/File-class.html) instance.
+    The path can be provided as a `String` or as a [`File`](https://api.dart.dev/stable/dart-io/File-class.html) instance.
 
 #### bool **silent** = `false`
 By default, the `collectCoverage()` function prints to the console the standard output of the underlying process. You can disable this output by setting the `silent` option to `true`.
