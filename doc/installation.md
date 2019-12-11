@@ -5,16 +5,16 @@ Before installing **Grinder-Coveralls**, you need to make sure you have the [Dar
 and [Pub](https://dart.dev/tools/pub/cmd), the Dart package manager, up and running.
 
 !!! warning
-    Grinder-Coveralls requires Dart >= **2.6.0**.
+    Grinder-Coveralls requires Dart >= **2.7.0**.
 
 You can verify if you're already good to go with the following commands:
 
 ```shell
 dart --version
-# Dart VM version: 2.6.0 (Thu Oct 24 17:52:22 2019 +0200) on "windows_x64"
+# Dart VM version: 2.7.0 (Fri Dec 6 16:26:51 2019 +0100) on "windows_x64"
 
 pub --version
-# Pub 2.6.0
+# Pub 2.7.0
 ```
 
 !!! info
