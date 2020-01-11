@@ -46,7 +46,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 ```
 
 #### dynamic **observatoryAddress**
-The address used by the [Observatory](https://dart-lang.github.io/observatory) profiler.
+The address used by the [Observatory](https://dart.dev/tools/observatory) profiler.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -61,7 +61,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
     Defaults to [`InternetAddress.loopbackIPv4`](https://api.dart.dev/stable/dart-io/InternetAddress/loopbackIPv4.html).
 
 #### int **observatoryPort** = `8181`
-The port used by the [Observatory](https://dart-lang.github.io/observatory) profiler.
+The port used by the [Observatory](https://dart.dev/tools/observatory) profiler.
 
 ```dart
 import 'package:grinder/grinder.dart';
