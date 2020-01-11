@@ -1,7 +1,7 @@
 # See also
 
 ## Development
-- [API reference](https://dev.belin.io/grinder-coveralls/api)
+- [API reference](https://pub.dev/documentation/grinder_coveralls)
 - [Pub package](https://pub.dev/packages/grinder_coveralls)
 - [Submit an issue](https://github.com/cedx/grinder-coveralls/issues)
 - [Grinder API docs](https://pub.dev/documentation/grinder)

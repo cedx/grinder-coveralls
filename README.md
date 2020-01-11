@@ -7,7 +7,7 @@
 
 ## Documentation
 - [User guide](https://dev.belin.io/grinder-coveralls)
-- [API reference](https://dev.belin.io/grinder-coveralls/api)
+- [API reference](https://pub.dev/documentation/grinder_coveralls)
 
 ## Development
 - [Git repository](https://github.com/cedx/grinder-coveralls)
