@@ -1,12 +1,11 @@
 * text=auto
-
 .* text
+
 *.dart text
 *.http text
 *.md text
 *.txt text
 *.yaml text
-*.yml text
 
 *.ico binary
 *.jpg binary
