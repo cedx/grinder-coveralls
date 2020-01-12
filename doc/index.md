@@ -14,7 +14,7 @@ dependencies:
   grinder_coveralls: *
 ```
 
-Install the latest version of **Grinder-Coveralls** with [Pub](https://dart.dev/tools/pub/cmd):
+Install the latest version of **Grinder-Coveralls** with [Pub](https://dart.dev/tools/pub):
 
 ```shell
 pub get
