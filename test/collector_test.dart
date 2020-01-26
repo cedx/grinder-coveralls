@@ -18,7 +18,8 @@ void main() => group('Collector', () {
     test('should change the file paths of the code coverage', () async {
       final collector = Collector(observatoryPort: port++)..basePath = joinDir(Directory.current, ['test', 'fixtures']).path;
       final coverage = await collector.run(testFiles);
-      expect(coverage, stringContainsInOrder(['SF:script1.dart', 'end_of_record', 'SF:script2.dart', 'end_of_record']));
+      expect(coverage, stringContainsInOrder(['SF:script1.dart', 'end_of_record']));
+      expect(coverage, stringContainsInOrder(['SF:script2.dart', 'end_of_record']));
     });
   });
 

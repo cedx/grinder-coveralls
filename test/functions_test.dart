@@ -20,7 +20,8 @@ void main() => group('collectCoverage()', () {
   test('should support the `basePath` option of the collector', () async {
     final basePath = joinDir(Directory.current, ['test', 'fixtures']).path;
     final coverage = await collectCoverage('test/fixtures/*.dart', basePath: basePath, observatoryPort: port++, silent: true);
-    expect(coverage, stringContainsInOrder(['SF:script1.dart', 'end_of_record', 'SF:script2.dart', 'end_of_record']));
+    expect(coverage, stringContainsInOrder(['SF:script1.dart', 'end_of_record']));
+    expect(coverage, stringContainsInOrder(['SF:script2.dart', 'end_of_record']));
   });
 
   test('should support the `reportOn` option of the collector', () async {
