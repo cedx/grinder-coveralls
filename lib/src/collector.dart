@@ -86,6 +86,7 @@ class Collector {
   /// Throws a [TimeoutException] if the process does not terminate before the [timeout] has passed.
   Future<Map> _profileScript(File script, {List<String> arguments}) async {
     final dartArgs = [
+      '--disable-service-auth-codes',
       '--enable-asserts',
       '--enable-vm-service=$observatoryPort/${observatoryAddress.address}',
       '--pause-isolates-on-exit',
