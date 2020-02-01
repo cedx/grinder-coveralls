@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [2.0.0](https://github.com/cedx/grinder-coveralls/compare/v2.0.0...v2.1.0)
+- Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
+- Updated the package dependencies.
+
 ## Version [2.0.0](https://github.com/cedx/grinder-coveralls/compare/v1.1.1...v2.0.0)
 - Breaking change: replaced the `collectFromDirectory()`, `collectFromFile()` and `collectFromFiles()` methods from the `Collector` class by the `run()` one.
 - Breaking change: using [`glob`](https://pub.dev/packages/glob) patterns instead of `FileSystemEntity` parameters for providing the list of files to be tested.
