@@ -5,6 +5,7 @@ class Collector {
 
   /// Creates a new collector.
   Collector({InternetAddress observatoryAddress, this.observatoryPort = 8181}):
+    assert(observatoryPort >= 0),
     observatoryAddress = observatoryAddress ?? InternetAddress.loopbackIPv4;
 
   /// The absolute base path to use for resolving the reported paths.

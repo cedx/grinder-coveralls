@@ -35,6 +35,11 @@ Future<String> collectCoverage(patterns, {
   bool silent = false,
   Duration timeout
 }) async {
+  assert(patterns is String || patterns is List<String>);
+  assert(observatoryAddress == null || observatoryAddress is String || observatoryAddress is InternetAddress);
+  assert(packagesFile == null || packagesFile is String || packagesFile is File);
+  assert(saveAs == null || saveAs is String || saveAs is File);
+
   final address = observatoryAddress is InternetAddress ? observatoryAddress : InternetAddress(observatoryAddress ?? InternetAddress.loopbackIPv4.address);
   final collector = Collector(observatoryAddress: address, observatoryPort: observatoryPort)
     ..basePath = basePath
@@ -57,6 +62,7 @@ Future<String> collectCoverage(patterns, {
 
 /// Uploads the specified code coverage [report] to the Coveralls service.
 Future<void> uploadCoverage(String report, {Configuration configuration, Uri endPoint, bool silent = false}) {
+  assert(report.isNotEmpty);
   final client = Client(endPoint);
   if (!silent) log('submitting to ${client.endPoint}');
   return client.upload(report, configuration);
