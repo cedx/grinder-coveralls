@@ -1,6 +1,6 @@
 # Changelog
 
-## Version [2.0.0](https://github.com/cedx/grinder-coveralls/compare/v2.0.0...v2.1.0)
+## Version [2.1.0](https://github.com/cedx/grinder-coveralls/compare/v2.0.0...v2.1.0)
 - Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
 - Updated the package dependencies.
 
