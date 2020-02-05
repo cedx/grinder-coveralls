@@ -5,7 +5,7 @@
       "name": "Tests",
       "type": "dart",
       "request": "launch",
-      "program": "test/",
+      "program": "${workspaceFolder}/test/",
       "enableAsserts": true
     }
   ]
