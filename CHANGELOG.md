@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version [2.1.1](https://github.com/cedx/grinder-coveralls/compare/v2.1.0...v2.1.1)
-- Deprecated this library.
+- Deprecated this package.
 
 ## Version [2.1.0](https://github.com/cedx/grinder-coveralls/compare/v2.0.0...v2.1.0)
 - Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
