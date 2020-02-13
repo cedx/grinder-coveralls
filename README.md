@@ -3,7 +3,9 @@
 
 [Grinder](https://google.github.io/grinder.dart) plug-in collecting your code coverage as [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) and uploading it to the [Coveralls](https://coveralls.io) service.
 
-> This library was created to run tests on the [Dart VM](https://dart.dev/tools/dart-vm) exclusively. It has not been tested and likely won't work for compiled Dart code (i.e. [Flutter](https://flutter.dev) or [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)).
+> WARNING: this package is **abandoned** and no longer maintained.  
+> Consider using the [`coverage`](https://pub.dev/packages/coverage) and
+> [`coveralls`](https://pub.dev/packages/coveralls) packages as an alternative.
 
 ## Documentation
 - [User guide](https://dev.belin.io/grinder-coveralls)
