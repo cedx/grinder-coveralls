@@ -1,5 +1,4 @@
 import 'package:grinder/grinder.dart';
-import 'package:grinder_coveralls/grinder_coveralls.dart';
 
 /// Starts the build system.
 Future<void> main(List<String> args) => grind(args);
