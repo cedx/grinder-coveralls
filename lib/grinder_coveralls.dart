@@ -1,4 +1,4 @@
-/// [Grinder](https://google.github.io/grinder.dart) plug-in collecting the code coverage and uploading it to [Coveralls](https://coveralls.io).
+/// [Grinder](https://pub.dev/packages/grinder) plug-in collecting the code coverage and uploading it to [Coveralls](https://coveralls.io).
 library grinder_coveralls;
 
 import 'dart:async';

@@ -1,5 +1,5 @@
 # Usage
-If you haven't used [Grinder](https://github.com/google/grinder.dart) before, be sure to check out the [related documentation](https://google.github.io/grinder.dart), as it explains how to create a `grind.dart` file and to define project tasks. Once you're familiar with that process, you may install this package.
+If you haven't used [Grinder](https://github.com/google/grinder.dart) before, be sure to check out the [related documentation](https://pub.dev/packages/grinder), as it explains how to create a `grind.dart` file and to define project tasks. Once you're familiar with that process, you may install the plug-in.
 
 The package provides two functions, `collectCoverage()` and `uploadCoverage()`, that let you collect the code coverage of one or several [Dart](https://dart.dev) scripts, and upload the resulting [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) report to the [Coveralls](https://coveralls.io) service.
     
