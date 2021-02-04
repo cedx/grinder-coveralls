@@ -1,13 +1,13 @@
 site_name: Grinder-Coveralls
 site_description: Grinder plug-in collecting your code coverage as LCOV and uploading it to the Coveralls service.
 site_author: Cédric Belin - cedric@belin.io
-site_url: https://docs.belin.io/grinder-coveralls
+site_url: https://cedx.github.io/grinder-coveralls
 
 docs_dir: doc
 site_dir: www
 
-repo_name: git.belin.io
-repo_url: https://git.belin.io/cedx/grinder-coveralls
+repo_name: github.com
+repo_url: https://github.com/cedx/grinder-coveralls
 edit_uri: ''
 
 copyright: Copyright &copy; 2019 - 2020 Cédric Belin

@@ -8,13 +8,13 @@
 > [`coveralls`](https://pub.dev/packages/coveralls) packages as an alternative.
 
 ## Documentation
-- [User guide](https://docs.belin.io/grinder-coveralls)
+- [User guide](https://cedx.github.io/grinder-coveralls)
 - [API reference](https://pub.dev/documentation/grinder_coveralls)
 
 ## Development
-- [Git repository](https://git.belin.io/cedx/grinder-coveralls)
+- [Git repository](https://github.com/cedx/grinder-coveralls)
 - [Pub package](https://pub.dev/packages/grinder_coveralls)
-- [Submit an issue](https://git.belin.io/cedx/grinder-coveralls/issues)
+- [Submit an issue](https://github.com/cedx/grinder-coveralls/issues)
 
 ## License
-[Grinder-Coveralls](https://docs.belin.io/grinder-coveralls) is distributed under the MIT License.
+[Grinder-Coveralls](https://cedx.github.io/grinder-coveralls) is distributed under the MIT License.
