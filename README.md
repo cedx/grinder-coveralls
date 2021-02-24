@@ -1,11 +1,11 @@
 # Grinder-Coveralls
-![Runtime](https://img.shields.io/badge/dart-%3E%3D2.7-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_coveralls.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-coveralls/badge.svg) ![Build](https://github.com/cedx/grinder-coveralls/workflows/build/badge.svg)
+![Runtime](https://badgen.net/pub/sdk-version/grinder_coveralls) ![Release](https://badgen.net/pub/v/grinder_coveralls) ![License](https://badgen.net/pub/license/grinder_coveralls) ![Likes](https://badgen.net/pub/likes/grinder_coveralls) ![Coverage](https://badgen.net/coveralls/c/github/cedx/grinder-coveralls) ![Build](https://badgen.net/github/checks/cedx/grinder-coveralls/main)
 
 [Grinder](https://pub.dev/packages/grinder) plug-in collecting your code coverage as [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) and uploading it to the [Coveralls](https://coveralls.io) service.
 
 > WARNING: this package is **abandoned** and no longer maintained.  
-> Consider using the [`coverage`](https://pub.dev/packages/coverage) and
-> [`coveralls`](https://pub.dev/packages/coveralls) packages as an alternative.
+> Consider using the [coverage](https://pub.dev/packages/coverage) and
+> [coveralls](https://pub.dev/packages/coveralls) packages as an alternative.
 
 ## Documentation
 - [User guide](https://cedx.github.io/grinder-coveralls)

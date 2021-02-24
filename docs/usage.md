@@ -14,11 +14,10 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
   collectCoverage('test/**_test.dart');
 ```
 
-The file patterns use the same syntax as the [`glob` package](https://pub.dev/packages/glob).
+The file patterns use the same syntax as the [glob](https://pub.dev/packages/glob) package.
 
-!!! tip
-    You can provide several file patterns to the `collectCoverage()` function:
-    the `patterns` parameter can be a `String` (single pattern) or a `List<String>` (multiple patterns).
+?> You can provide several file patterns to the `collectCoverage()` function:
+the `patterns` parameter can be a `String` (single pattern) or a `List<String>` (multiple patterns).
 
 ### Options
 
@@ -35,7 +34,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 ```
 
 #### Map&lt;String, String&gt; **environment**
-The variables that will be injected as compile-time constants. These variables will be accessible using the `fromEnvironment()` method of the [`bool`](https://api.dart.dev/stable/dart-core/bool/bool.fromEnvironment.html), [`int`](https://api.dart.dev/stable/dart-core/int/int.fromEnvironment.html) and [`String`](https://api.dart.dev/stable/dart-core/String/String.fromEnvironment.html) classes.
+The variables that will be injected as compile-time constants. These variables will be accessible using the `fromEnvironment()` method of the [bool](https://api.dart.dev/stable/dart-core/bool/bool.fromEnvironment.html), [int](https://api.dart.dev/stable/dart-core/int/int.fromEnvironment.html) and [String](https://api.dart.dev/stable/dart-core/String/String.fromEnvironment.html) classes.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -46,7 +45,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 ```
 
 #### dynamic **observatoryAddress**
-The address used by the [Observatory](https://dart.dev/tools/observatory) profiler.
+The address used by the [Observatory](https://dart.dev/tools/dart-devtools) profiler.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -56,12 +55,11 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
   collectCoverage('test/**_test.dart', observatoryAddress: '127.0.0.1');
 ```
 
-!!! tip
-    The address can be provided as a `String` or as an [`InternetAddress`](https://api.dart.dev/stable/dart-io/InternetAddress-class.html) instance.  
-    Defaults to [`InternetAddress.loopbackIPv4`](https://api.dart.dev/stable/dart-io/InternetAddress/loopbackIPv4.html).
+?> The address can be provided as a `String` or as an [InternetAddress](https://api.dart.dev/stable/dart-io/InternetAddress-class.html) instance.  
+Defaults to [InternetAddress.loopbackIPv4](https://api.dart.dev/stable/dart-io/InternetAddress/loopbackIPv4.html).
 
 #### int **observatoryPort** = `8181`
-The port used by the [Observatory](https://dart.dev/tools/observatory) profiler.
+The port used by the [Observatory](https://dart.dev/tools/dart-devtools) profiler.
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -82,8 +80,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
   collectCoverage('test/**_test.dart', packagesFile: '.packages');
 ```
 
-!!! tip
-    The path can be provided as a `String` or as a [`File`](https://api.dart.dev/stable/dart-io/File-class.html) instance.
+?> The path can be provided as a `String` or as a [File](https://api.dart.dev/stable/dart-io/File-class.html) instance.
 
 #### List&lt;String&gt; **reportOn**
 The prefixes used to limit the files included in the coverage report output. All file paths not containing theses prefixes will be excluded from the code coverage.
@@ -107,8 +104,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
   collectCoverage('test/**_test.dart', saveAs: 'lcov.info');
 ```
 
-!!! tip
-    The path can be provided as a `String` or as a [`File`](https://api.dart.dev/stable/dart-io/File-class.html) instance.
+?> The path can be provided as a `String` or as a [File](https://api.dart.dev/stable/dart-io/File-class.html) instance.
 
 #### bool **silent** = `false`
 By default, the `collectCoverage()` function prints to the console the standard output of the underlying process. You can disable this output by setting the `silent` option to `true`.
@@ -157,8 +153,7 @@ import 'package:grinder_coveralls/grinder_coveralls.dart';
 }
 ```
 
-!!! tip
-    See the source code of the [`coveralls` package](https://pub.dev/packages/coveralls) for the full list of supported parameters.
+?> See the source code of the [coveralls](https://pub.dev/packages/coveralls) package for the full list of supported parameters.
 
 #### Uri **endPoint**
 The base URI of the API endpoint of the [Coveralls](https://coveralls.io) service.
